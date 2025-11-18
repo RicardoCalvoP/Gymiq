@@ -6,18 +6,21 @@ export default function TabsLayout() {
   return (
     <Tabs
     screenOptions={{
-        tabBarStyle: { backgroundColor: "#000" },
+        headerStyle: { backgroundColor: "#000"},
+        headerTintColor: "#fff",
+        headerTitleStyle: { fontSize: 30},
+        tabBarStyle: { backgroundColor: "#000"},
       }}
 
     >
       <Tabs.Screen
-        name="profile"
-        options={{ title: "Perfil" ,tabBarIcon: ({ color }) => <HomeIcon color={color} />}
+        name="index"
+        options={{ title: "Workouts" ,tabBarIcon: ({ color }) => <HomeIcon color={color} />}
       }
       />
       <Tabs.Screen
-        name="workout"
-        options={{ title: "Workout", tabBarIcon: ({ color }) => <InfoIcon color={color} />, }}
+        name="profile"
+        options={{ title: "Profile", tabBarIcon: ({ color }) => <InfoIcon color={color} />, }}
       />
     </Tabs>
   );
