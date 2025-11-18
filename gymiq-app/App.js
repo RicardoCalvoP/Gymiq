@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { View } from 'react-native';
-import WorkoutScreen  from './app/(tabs)/workout';
+import Main  from './app/components/Main.jsx';
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 
@@ -9,7 +9,7 @@ export default function App() {
         <SafeAreaProvider>
         <View className="flex-1 items-center justify-center">
             <StatusBar style="light" />
-            <WorkoutScreen />
+            <Main />
           </View>
         </SafeAreaProvider>
 
