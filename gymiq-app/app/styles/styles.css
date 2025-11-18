@@ -1,0 +1,7 @@
+.Card {
+  @apply p-4 rounded-xl bg-white shadow;
+}
+
+.Card .Title {
+  @apply text-xl font-semibold text-gray-800;
+}
