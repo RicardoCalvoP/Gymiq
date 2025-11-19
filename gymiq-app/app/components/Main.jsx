@@ -1,6 +1,6 @@
-import { useState } from "react";
 import {  FlatList, View, Text, ActivityIndicator} from "react-native";
 import { Button } from "./Button";
+import { useUser } from "../context/UserContext";
 
 import { WORKOUT_DATA } from "../lib/exerciseData";
 
@@ -8,7 +8,11 @@ import WorkoutCard from "./WorkoutCard";
 import Screen from "./Screen";
 
 export default function Main() {
-  const [workouts] = useState(WORKOUT_DATA);
+  const USUARIOS = WORKOUT_DATA[0].usuarios;
+  const { activeUserId, setActiveUserId } = useUser();
+  const activeUser = USUARIOS.find((u) => u.id === activeUserId);
+  const workouts = activeUser?.workouts ?? [];
+
 
   return (
     <Screen>

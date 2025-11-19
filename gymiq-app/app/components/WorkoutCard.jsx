@@ -5,7 +5,7 @@ import { Link } from "expo-router";
 export default function WorkoutCard({ workout }) {
 
   return (
-      <Link href={`/${workout.id}`} asChild>
+      <Link href={`components/workouts/${workout.id}`} asChild>
         <Pressable key={workout.id}
         className="bg-[#1c1c1e] p-4 rounded-xl mx-2 my-3"
         >
