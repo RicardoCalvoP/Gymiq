@@ -11,3 +11,13 @@ export const HomeIcon = (props) => (
 export const InfoIcon = (props) => (
   <FontAwesome name="info" size={32} color="white" {...props} />
 );
+
+export const ChangeIcon = (props) => (
+  <FontAwesome name="refresh" size={16} color="white" {...props} />
+);
+export default {
+  CircleInfoIcon,
+  HomeIcon,
+  InfoIcon,
+  ChangeIcon,
+};
