@@ -1,6 +1,7 @@
 import { Pressable, Text } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
-export function Button({ title, onPress, flex }) {
+export default  function Button({ title, onPress, flex }) {
   return (
     <Pressable
       onPress={onPress}
@@ -11,6 +12,16 @@ export function Button({ title, onPress, flex }) {
       <Text className="text-white font-semibold text-center">
         {title}
       </Text>
+    </Pressable>
+  );
+}
+
+
+export function BackButton() {
+  const navigation = useNavigation();
+  return (
+    <Pressable onPress={() => navigation.goBack()} className="px-4">
+      <Text className="text-white text-[16px]">← Back</Text>
     </Pressable>
   );
 }

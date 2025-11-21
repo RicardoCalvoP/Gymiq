@@ -1,7 +1,8 @@
-import {  Stack } from "expo-router";
+import { Stack } from "expo-router";
 import { View } from "react-native";
 import { UserProvider } from "./context/UserContext";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { BackButton } from "./components/Button";
 
 export default function Layout() {
   return (
@@ -10,8 +11,11 @@ export default function Layout() {
         <View className="flex-1">
           <Stack
             screenOptions={{
-              headerStyle: {backgroundColor: "black"},
+              headerStyle: { backgroundColor: "#000" },
               headerTintColor: "#fff",
+              headerLeft: () => <BackButton />,
+              headerRight: () => null,
+              headerShown: true
             }}>
 
             <Stack.Screen
@@ -21,8 +25,10 @@ export default function Layout() {
 
             {/* Pantalla de detalle, aquí sí quieres header + back */}
             <Stack.Screen
-              name="[workoutId]"
-              options={{ title: "Workout" }}
+              name="components/workouts/[workoutId]"
+              options={{
+                title: "Workout",
+               }}
             />
           </Stack>
         </View>
