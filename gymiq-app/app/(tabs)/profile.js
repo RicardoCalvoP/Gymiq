@@ -2,7 +2,7 @@ import { View, Text } from "react-native";
 import { useUser } from "../context/UserContext";
 import Screen from "../components/Screen";
 import { WORKOUT_DATA } from "../lib/exerciseData";
-import { Button } from "../components/Button";
+import Button from "../components/Button";
 
 export default function ProfileScreen() {
   const USUARIOS = WORKOUT_DATA[0].usuarios;
