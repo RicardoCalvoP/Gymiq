@@ -1,5 +1,5 @@
 import {  FlatList, View, Text, ActivityIndicator} from "react-native";
-import { Button } from "./Button";
+import Button  from "./Button";
 import { useUser } from "../context/UserContext";
 
 import { WORKOUT_DATA } from "../lib/exerciseData";

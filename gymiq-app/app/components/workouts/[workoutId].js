@@ -1,11 +1,15 @@
-import { Text, FlatList, View } from 'react-native'
-import { Link } from 'expo-router'
+import { Text, FlatList, View, ScrollView} from 'react-native'
 import { useLocalSearchParams } from 'expo-router'
-import Screen from "../Screen";
+
 import { WORKOUT_DATA } from "../../lib/exerciseData"
 
+import Screen from "../Screen";
+import Button from '../Button';
+import ExerciseCard from './ExerciseCard';
+
 export default function WorkoutDetails(){
-  const { workoutId } = useLocalSearchParams();
+  const { workoutId, isActive } = useLocalSearchParams();
+  const editable = isActive === 'true';
   // WORKOUT_DATA stores workouts nested under usuarios. Search all users for the workout id.
   let workout;
   for (const entry of WORKOUT_DATA) {
@@ -31,37 +35,32 @@ export default function WorkoutDetails(){
 
   return (
     <Screen>
-      <Text className="text-slate-200 text-[20px] font-bold mx-2">
-        {workout.name}
-      </Text>
-
-       <FlatList
-        data={workout.exercises}
-        keyExtractor={(exercise) => exercise.id}
-        renderItem={({ item }) => (
-          <View className="mx-2 my-2">
-            <Text className="text-slate-200 text-[18px] font-semibold">
-              {item.name}
+      <ScrollView>
+        <View className="flex-1 items-center mb-4 mt-12">
+          {editable ? (
+            <Text className="text-slate-200 text-[25px] font-bold mx-2">
+              Is Active: {workout.name}
             </Text>
-            <Text className="text-slate-400 text-[14px]">
-              {item.description}
+          ) : (
+            <Text className="text-slate-200 text-[25px] font-bold mx-2">
+              {workout.name}
             </Text>
+          )}
+        </View>
 
-            {item.sets?.map((set) => (
-              <Text
-                key={set.index}
-                className="text-slate-300 text-[12px]"
-              >
-                Set {set.index}: {set.weight} kg x {set.reps} reps
-              </Text>
-            ))}
-          </View>
-        )}
-      />
+        <FlatList
+          data={workout.exercises}
+          keyExtractor={(exercise) => exercise.id}
+          scrollEnabled={false}
+          renderItem={({ item }) => (
+            <ExerciseCard exercise={item} editable={editable} />
+          )}
+        />
 
-      <Link href="/" >
-        Return Home
-      </Link>
+        <View>
+          <Button />
+        </View>
+      </ScrollView>
     </Screen>
   )
 }
