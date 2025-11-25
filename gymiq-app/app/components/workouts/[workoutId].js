@@ -1,15 +1,18 @@
-import { Text, FlatList, View, ScrollView} from 'react-native'
+import { Text, FlatList, View, ScrollView, Pressable} from 'react-native'
+import { useState } from "react";
 import { useLocalSearchParams } from 'expo-router'
+import ConfirmModal from "../ConfirmModal";
 
 import { WORKOUT_DATA } from "../../lib/exerciseData"
 
 import Screen from "../Screen";
-import Button from '../Button';
 import ExerciseCard from './ExerciseCard';
 
 export default function WorkoutDetails(){
   const { workoutId, isActive } = useLocalSearchParams();
   const editable = isActive === 'true';
+  const [modalVisible, setModalVisible] = useState(false);
+
   // WORKOUT_DATA stores workouts nested under usuarios. Search all users for the workout id.
   let workout;
   for (const entry of WORKOUT_DATA) {
@@ -36,16 +39,10 @@ export default function WorkoutDetails(){
   return (
     <Screen>
       <ScrollView>
-        <View className="flex-1 items-center mb-4 mt-12">
-          {editable ? (
-            <Text className="text-slate-200 text-[25px] font-bold mx-2">
-              Is Active: {workout.name}
-            </Text>
-          ) : (
-            <Text className="text-slate-200 text-[25px] font-bold mx-2">
-              {workout.name}
-            </Text>
-          )}
+        <View className="flex-1 mb-4">
+          <Text className="text-slate-200 text-[30px] font-bold mx-2">
+            {workout.name}
+          </Text>
         </View>
 
         <FlatList
@@ -57,9 +54,29 @@ export default function WorkoutDetails(){
           )}
         />
 
-        <View>
-          <Button />
+        {
+        editable ? (
+        <View className="bg-blue-500 mt-2 rounded-md items-center">
+            <Pressable
+              className="flex-1 w-full items-center justify-center py-3 "
+              onPress={() => setModalVisible(true)}
+              >
+                <Text className="text-slate-200 font-semibold">
+                  Complete Workout
+                </Text>
+            </Pressable>
         </View>
+        ) : null
+        }
+
+        <ConfirmModal
+        visible={modalVisible}
+        message="Are you sure you want to mark this workout as completed?"
+        onCancel={() => setModalVisible(false)}
+        onConfirm={() => {
+          setModalVisible(false);
+        }}
+      />
       </ScrollView>
     </Screen>
   )
