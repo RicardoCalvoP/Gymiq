@@ -21,20 +21,24 @@ export default function ExerciseCard({ exercise, editable = false }) {
             {exercise.sets?.length ?? 0} sets x {exercise.sets?.[0]?.reps ?? '-'} reps
           </Text>
 
-          <View className="p-2 mx-2  mt-4 rounded-xl flex-row justify-between ">
-            <Text className="text-slate-300 font-medium">
+          <View className="p-2 mx-2 mt-4 rounded-xl flex-row items-center">
+            <Text className="text-slate-300 font-medium" style={{ width: 40, textAlign: 'center' }}>
               Set
             </Text>
-            <Text className="text-slate-300 font-medium">
+
+            <Text className="text-slate-300 font-medium flex-1 text-center">
               Vol. (kg)
             </Text>
-            <Text className="text-slate-300 font-medium">
+
+            <Text className="text-slate-300 font-medium flex-1 text-center">
               Weight (kg)
             </Text>
-            <Text className="text-slate-300 font-medium">
+
+            <Text className="text-slate-300 font-medium flex-1 text-center">
               Reps
             </Text>
           </View>
+
           <FlatList
             data={exercise.sets}
             keyExtractor={(set) => set.index}

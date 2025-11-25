@@ -33,7 +33,7 @@ export default function Main() {
             <Text className="text-slate-200 text-[20px] font-bold mx-2">
               Workouts
             </Text>
-            <View className="flex-row space-x-2">
+            <View className="flex-row space-x-2 items-center">
               <Button title="New Workout (soon)" flex onPress={() => {}} />
               <Button title="Explore Workout (soon)" flex onPress={() => {}} />
             </View>

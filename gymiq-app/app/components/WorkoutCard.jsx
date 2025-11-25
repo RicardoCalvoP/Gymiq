@@ -20,9 +20,9 @@ export default function WorkoutCard({ workout }) {
         </Pressable>
         </Link>
 
-        <View className="bg-blue-500 py-3 mt-2 rounded-md items-center">
+        <View className="bg-blue-500 mt-2 rounded-md items-center">
           <Link href={`/components/workouts/${workout.id}?isActive=true`} asChild>
-            <Pressable key={workout.id} className="flex-1 w-full items-center justify-center">
+            <Pressable key={workout.id} className="flex-1 w-full items-center justify-center py-3">
               <Text className="text-slate-200 font-semibold">
                 Start Workout
               </Text>
