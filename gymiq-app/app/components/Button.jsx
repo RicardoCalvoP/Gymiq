@@ -9,7 +9,7 @@ export default  function Button({ title, onPress, flex }) {
         bg-[#1c1c1e] p-4 rounded-xl mx-2 my-5 ${flex ? "flex-1" : ""}
         `}
     >
-      <Text className="text-white font-semibold text-center">
+      <Text numberOfLines={1} className="text-white font-semibold text-center">
         {title}
       </Text>
     </Pressable>
