@@ -14,22 +14,22 @@ export default function ConfirmModal({
       onRequestClose={onCancel}
     >
       <View className="flex-1 bg-black/50 justify-center items-center">
-        <View className="bg-white p-6 rounded-xl w-4/5">
-          <Text className="text-lg font-semibold mb-4">{message}</Text>
+        <View className="bg-[#1c1c1e] p-6 rounded-xl w-4/5">
+          <Text className="text-slate-200 text-[20px] font-semibold mb-5">{message}</Text>
 
-          <View className="flex-row justify-between mt-4">
+          <View className="flex-row items-center space-x-4 mt-5">
             <Pressable
               onPress={onCancel}
-              className="bg-gray-300 px-4 py-2 rounded-md"
+              className="bg-gray-300 py-2 rounded-md flex-1 items-center"
             >
-              <Text>Cancelar</Text>
+              <Text>Cancel</Text>
             </Pressable>
 
             <Pressable
               onPress={onConfirm}
-              className="bg-blue-500 px-4 py-2 rounded-md"
+              className="bg-blue-500 py-2 rounded-md flex-1 items-center"
             >
-              <Text className="text-white">Confirmar</Text>
+              <Text className="text-white">Confirm</Text>
             </Pressable>
           </View>
         </View>
