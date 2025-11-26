@@ -27,13 +27,15 @@ export default function SetCard({ set, editable = false }) {
           {set?.index ?? '-'}
         </Text>
       </View>
-
-      <View className="flex-1 items-center">
-        <Text className="text-slate-200 text-[15px]">
-          {computedVol === '-' ? '-' : String(computedVol)}
-         </Text>
-      </View>
-
+      {
+        !editable ? (
+          <View className="flex-1 items-center">
+            <Text className="text-slate-200 text-[15px]">
+              {computedVol === '-' ? '-' : String(computedVol)}
+            </Text>
+          </View>
+            ) : null
+      }
       <View className="flex-1 items-center">
         <Pressable onPress={() => weightRef.current?.focus()}  >
           {editable ? (
@@ -85,6 +87,7 @@ export default function SetCard({ set, editable = false }) {
         )}
       </Pressable>
       </View>
+
     </View>
   );
 }

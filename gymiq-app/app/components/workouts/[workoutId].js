@@ -1,12 +1,13 @@
 import { Text, FlatList, View, ScrollView, Pressable} from 'react-native'
 import { useState } from "react";
 import { useLocalSearchParams } from 'expo-router'
-import ConfirmModal from "../ConfirmModal";
 
 import { WORKOUT_DATA } from "../../lib/exerciseData"
 
+import ConfirmModal from "../ConfirmModal";
 import Screen from "../Screen";
 import ExerciseCard from './ExerciseCard';
+import { ActionButton } from '../Button';
 
 export default function WorkoutDetails(){
   const { workoutId, isActive } = useLocalSearchParams();
@@ -56,16 +57,10 @@ export default function WorkoutDetails(){
 
         {
         editable ? (
-        <View className="bg-blue-500 mt-2 rounded-md items-center">
-            <Pressable
-              className="flex-1 w-full items-center justify-center py-3 "
-              onPress={() => setModalVisible(true)}
-              >
-                <Text className="text-slate-200 font-semibold">
-                  Complete Workout
-                </Text>
-            </Pressable>
-        </View>
+        <ActionButton
+          title="End Workout"
+          onPress={() => setModalVisible(true)}
+        />
         ) : null
         }
 

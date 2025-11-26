@@ -25,10 +25,13 @@ export default function ExerciseCard({ exercise, editable = false }) {
             <Text className="text-slate-300 font-medium" style={{ width: 40, textAlign: 'center' }}>
               Set
             </Text>
-
-            <Text className="text-slate-300 font-medium flex-1 text-center">
+            {
+              !editable ? (
+                <Text className="text-slate-300 font-medium flex-1 text-center">
               Vol. (kg)
             </Text>
+              ) : null
+            }
 
             <Text className="text-slate-300 font-medium flex-1 text-center">
               Weight (kg)
