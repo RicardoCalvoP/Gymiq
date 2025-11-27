@@ -4,12 +4,13 @@ import { Link } from "expo-router";
 import { ChangeIcon } from "../Icons";
 import SetCard from "./SetCard";
 
-export default function ExerciseCard({ exercise, editable = false }) {
+export default function ExerciseCard({ exercise, editable = false, sessionExercise, onChangeSet}) {
+  const sets = sessionExercise?.sets ?? exercise.sets ?? [];
 
   return (
       <View className="my-5">
           <View className="flex-row items-center justify-between">
-            <Text className="text-slate-300 text-[22px] font-semibold mx-2">
+            <Text className="text-slate-200 text-[22px] font-semibold mx-2">
               {exercise.name}
             </Text>
             <View className="pr-4">
@@ -18,36 +19,64 @@ export default function ExerciseCard({ exercise, editable = false }) {
           </View>
 
           <Text className="text-slate-500 mx-2">
-            {exercise.sets?.length ?? 0} sets x {exercise.sets?.[0]?.reps ?? '-'} reps
+            {sets.length} sets x{" "}
+            {sets.length > 0
+              ? (sets[0].recommendedReps ?? sets[0].reps ?? "-")
+              : "-"}{" "}
+            reps
           </Text>
 
-          <View className="p-2 mx-2 mt-4 rounded-xl flex-row items-center">
-            <Text className="text-slate-300 font-medium" style={{ width: 40, textAlign: 'center' }}>
-              Set
-            </Text>
-            {
-              !editable ? (
-                <Text className="text-slate-300 font-medium flex-1 text-center">
-              Vol. (kg)
-            </Text>
-              ) : null
-            }
+          <View className="px-4 mt-4 rounded-xl flex-row items-center space-x-2">
+            <View style={{ width: 40 }} className="items-center">
+              <Text className="text-slate-200 font-medium">
+                Set
+              </Text>
+            </View>
 
-            <Text className="text-slate-300 font-medium flex-1 text-center">
-              Weight (kg)
-            </Text>
+            {!editable ? (
+              <View className="flex-1 items-center">
+                <Text className="text-slate-200 font-medium">
+                  Vol. (kg)
+                </Text>
+              </View>
+            ) : null}
 
-            <Text className="text-slate-300 font-medium flex-1 text-center">
-              Reps
-            </Text>
+            <View className="flex-1 items-end">
+              <Text className="text-slate-200 font-medium">
+                Weight (kg)
+              </Text>
+            </View>
+
+            <View className="flex-1 items-center">
+              <Text className="text-slate-200 font-medium">
+                Reps
+              </Text>
+            </View>
+
+            {editable && (
+              <View style={{ width: 40 }} className="items-center">
+                <Text className="text-slate-200 font-medium">
+                  Done
+                </Text>
+              </View>
+            )}
           </View>
 
+
+
           <FlatList
-            data={exercise.sets}
-            keyExtractor={(set) => set.index}
+            data={sets}
+            keyExtractor={(set) => set.id?.toString() ?? String(set.index)}
             scrollEnabled={false}
-            renderItem={({ item }) => (
-              <SetCard set={item} editable={editable}/>
+            renderItem={({ item, index }) => (
+              <SetCard
+                set={item}
+                rowIndex={index}
+                editable={editable}
+                onChange={(changes) =>
+                  onChangeSet(exercise.id, item.id, changes)
+                }
+              />
             )}
           />
       </View>
