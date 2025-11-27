@@ -21,8 +21,8 @@ export default function ConfirmModal({
           <View className="flex-row items-center mt-5">
 
             <CancelButton
-              title="Confirm"
-              onPress={onConfirm}
+              title="Cancel"
+              onPress={onCancel}
             />
             <ActionButton
               title="Confirm"
