@@ -18,7 +18,6 @@ export default function ProfileScreen() {
       <View className="flex-row space-x-2 mb-4">
         <Button title="Carlos" onPress={() => setActiveUserId("u1")} />
         <Button title="Ana" onPress={() => setActiveUserId("u2")} />
-        <Button title="Luis" onPress={() => setActiveUserId("u3")} />
       </View>
 
       <Text className="text-slate-200 text-[24px] font-bold mx-2 mb-4">
