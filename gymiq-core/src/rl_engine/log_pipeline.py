@@ -99,3 +99,11 @@ def ingest_log_entry(log_entry: Dict[str, Any]) -> None:
             f"ratio_reps={state_raw['ratio_reps']:.2f}\n"
             "\n******************************************************* \n"
         )
+
+        result = POLICY_SERVICE.recommend_weight_delta(state_raw)
+
+        delta_kg = result["delta_kg"]
+        action_idx = result["action_index"]
+        action_probs = result["action_probs"]
+
+        print("action_probs:", action_probs)

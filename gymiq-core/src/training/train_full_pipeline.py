@@ -66,6 +66,10 @@ def build_states_and_targets(
             target_idx = _delta_to_action_idx(delta_teacher)
 
             states_and_targets.append((state_tensor, target_idx))
+    print("TEACHER:", delta_teacher,
+          "vol:", state_raw["ratio_volumen"],
+          "reps:", state_raw["ratio_reps"],
+          "rpe_real:", state_raw["rpe_real"])
 
     return states_and_targets
 
