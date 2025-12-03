@@ -7,28 +7,52 @@ export const WORKOUT_DATA = [
           "nombre": "Carlos",
           "apellido": "Ramírez",
           "edad": 28,
-          "genero": "Masculino",
-          "peso_kg": 78,
-          "altura_cm": 180,
           "imc": 24.1,
-          "frecuencia_entrenamiento": "4 veces por semana",
-          "historial_lesiones": true,
-          "zona_lesion": "Rodilla derecha"
+          "peso_usuario": 78,
+          "sexo": "M",
+          "historial_lesion_tipo": "leve",
+          "historial_lesion_tiempo_semanas": 12,
+          "dolor_actual": "no_dolor",
+          "altura_cm": 180,
+          "frecuencia_entrenamiento": "4 veces por semana"
         },
         "workouts": [
           {
             "id": "w_u1_0",
             "name": "Push personalizado Carlos",
+            "sesion_num": 0,
             "exercises": [
               {
                 "id": "e_u1_0",
                 "name": "Press banca con barra",
                 "description": "Movimiento principal de empuje horizontal.",
                 "reps_objetivo": 8,
+                "rpe_objetivo": 8.0,
                 "sets": [
-                  { "index": 1, "weight": 60,  "reps": 10 },
-                  { "index": 2, "weight": 70,  "reps": 8  },
-                  { "index": 3, "weight": 72.5,"reps": 6  }
+                  {
+                    "index": 1,
+                    "weight": 60,
+                    "reps": 10,
+                    "peso_kg_actual": 60,
+                    "reps_realizadas": 10,
+                    "rpe_real": 7.5
+                  },
+                  {
+                    "index": 2,
+                    "weight": 70,
+                    "reps": 8,
+                    "peso_kg_actual": 70,
+                    "reps_realizadas": 8,
+                    "rpe_real": 8.0
+                  },
+                  {
+                    "index": 3,
+                    "weight": 72.5,
+                    "reps": 6,
+                    "peso_kg_actual": 72.5,
+                    "reps_realizadas": 6,
+                    "rpe_real": 8.5
+                  }
                 ]
               },
               {
@@ -36,10 +60,32 @@ export const WORKOUT_DATA = [
                 "name": "Press militar con barra",
                 "description": "Empuje vertical para hombro.",
                 "reps_objetivo": 8,
+                "rpe_objetivo": 8.0,
                 "sets": [
-                  { "index": 1, "weight": 32.5, "reps": 10 },
-                  { "index": 2, "weight": 37.5, "reps": 8  },
-                  { "index": 3, "weight": 40,   "reps": 6  }
+                  {
+                    "index": 1,
+                    "weight": 32.5,
+                    "reps": 10,
+                    "peso_kg_actual": 32.5,
+                    "reps_realizadas": 10,
+                    "rpe_real": 7.5
+                  },
+                  {
+                    "index": 2,
+                    "weight": 37.5,
+                    "reps": 8,
+                    "peso_kg_actual": 37.5,
+                    "reps_realizadas": 8,
+                    "rpe_real": 8.0
+                  },
+                  {
+                    "index": 3,
+                    "weight": 40,
+                    "reps": 6,
+                    "peso_kg_actual": 40,
+                    "reps_realizadas": 6,
+                    "rpe_real": 8.5
+                  }
                 ]
               },
               {
@@ -47,10 +93,32 @@ export const WORKOUT_DATA = [
                 "name": "Fondos en paralelas asistidos",
                 "description": "Trabajo de tríceps y pecho con asistencia.",
                 "reps_objetivo": 10,
+                "rpe_objetivo": 8.0,
                 "sets": [
-                  { "index": 1, "weight": 15, "reps": 12 },
-                  { "index": 2, "weight": 10, "reps": 10 },
-                  { "index": 3, "weight": 5,  "reps": 8  }
+                  {
+                    "index": 1,
+                    "weight": 15,
+                    "reps": 12,
+                    "peso_kg_actual": 15,
+                    "reps_realizadas": 12,
+                    "rpe_real": 7.5
+                  },
+                  {
+                    "index": 2,
+                    "weight": 10,
+                    "reps": 10,
+                    "peso_kg_actual": 10,
+                    "reps_realizadas": 10,
+                    "rpe_real": 8.0
+                  },
+                  {
+                    "index": 3,
+                    "weight": 5,
+                    "reps": 8,
+                    "peso_kg_actual": 5,
+                    "reps_realizadas": 8,
+                    "rpe_real": 8.0
+                  }
                 ]
               },
               {
@@ -58,9 +126,24 @@ export const WORKOUT_DATA = [
                 "name": "Aperturas con mancuernas en banco plano",
                 "description": "Aislamiento de pectoral con recorrido controlado.",
                 "reps_objetivo": 12,
+                "rpe_objetivo": 8.0,
                 "sets": [
-                  { "index": 1, "weight": 12, "reps": 12 },
-                  { "index": 2, "weight": 14, "reps": 10 }
+                  {
+                    "index": 1,
+                    "weight": 12,
+                    "reps": 12,
+                    "peso_kg_actual": 12,
+                    "reps_realizadas": 12,
+                    "rpe_real": 7.5
+                  },
+                  {
+                    "index": 2,
+                    "weight": 14,
+                    "reps": 10,
+                    "peso_kg_actual": 14,
+                    "reps_realizadas": 10,
+                    "rpe_real": 8.0
+                  }
                 ]
               },
               {
@@ -68,9 +151,24 @@ export const WORKOUT_DATA = [
                 "name": "Jalón en polea alta agarre cerrado",
                 "description": "Enfoque en dorsales y bíceps, complementa el trabajo de empuje.",
                 "reps_objetivo": 10,
+                "rpe_objetivo": 8.0,
                 "sets": [
-                  { "index": 1, "weight": 45, "reps": 12 },
-                  { "index": 2, "weight": 50, "reps": 10 }
+                  {
+                    "index": 1,
+                    "weight": 45,
+                    "reps": 12,
+                    "peso_kg_actual": 45,
+                    "reps_realizadas": 12,
+                    "rpe_real": 7.5
+                  },
+                  {
+                    "index": 2,
+                    "weight": 50,
+                    "reps": 10,
+                    "peso_kg_actual": 50,
+                    "reps_realizadas": 10,
+                    "rpe_real": 8.0
+                  }
                 ]
               },
               {
@@ -78,10 +176,32 @@ export const WORKOUT_DATA = [
                 "name": "Extensión de tríceps en polea",
                 "description": "Trabajo de tríceps con agarre en barra recta.",
                 "reps_objetivo": 10,
+                "rpe_objetivo": 8.0,
                 "sets": [
-                  { "index": 1, "weight": 25,   "reps": 12 },
-                  { "index": 2, "weight": 27.5, "reps": 10 },
-                  { "index": 3, "weight": 30,   "reps": 8  }
+                  {
+                    "index": 1,
+                    "weight": 25,
+                    "reps": 12,
+                    "peso_kg_actual": 25,
+                    "reps_realizadas": 12,
+                    "rpe_real": 7.5
+                  },
+                  {
+                    "index": 2,
+                    "weight": 27.5,
+                    "reps": 10,
+                    "peso_kg_actual": 27.5,
+                    "reps_realizadas": 10,
+                    "rpe_real": 8.0
+                  },
+                  {
+                    "index": 3,
+                    "weight": 30,
+                    "reps": 8,
+                    "peso_kg_actual": 30,
+                    "reps_realizadas": 8,
+                    "rpe_real": 8.5
+                  }
                 ]
               }
             ]
@@ -89,16 +209,39 @@ export const WORKOUT_DATA = [
           {
             "id": "w_u1_1",
             "name": "Legs (adaptado rodilla)",
+            "sesion_num": 1,
             "exercises": [
               {
                 "id": "e_u1_6",
                 "name": "Prensa inclinada",
                 "description": "Menos carga en rodilla que la sentadilla libre.",
                 "reps_objetivo": 10,
+                "rpe_objetivo": 8.0,
                 "sets": [
-                  { "index": 1, "weight": 100, "reps": 12 },
-                  { "index": 2, "weight": 120, "reps": 10 },
-                  { "index": 3, "weight": 130, "reps": 8  }
+                  {
+                    "index": 1,
+                    "weight": 100,
+                    "reps": 12,
+                    "peso_kg_actual": 100,
+                    "reps_realizadas": 12,
+                    "rpe_real": 7.5
+                  },
+                  {
+                    "index": 2,
+                    "weight": 120,
+                    "reps": 10,
+                    "peso_kg_actual": 120,
+                    "reps_realizadas": 10,
+                    "rpe_real": 8.0
+                  },
+                  {
+                    "index": 3,
+                    "weight": 130,
+                    "reps": 8,
+                    "peso_kg_actual": 130,
+                    "reps_realizadas": 8,
+                    "rpe_real": 8.5
+                  }
                 ]
               },
               {
@@ -106,10 +249,32 @@ export const WORKOUT_DATA = [
                 "name": "Peso muerto rumano",
                 "description": "Trabajo de isquios y glúteo con énfasis en la bisagra de cadera.",
                 "reps_objetivo": 8,
+                "rpe_objetivo": 8.0,
                 "sets": [
-                  { "index": 1, "weight": 50, "reps": 10 },
-                  { "index": 2, "weight": 60, "reps": 8  },
-                  { "index": 3, "weight": 60, "reps": 8  }
+                  {
+                    "index": 1,
+                    "weight": 50,
+                    "reps": 10,
+                    "peso_kg_actual": 50,
+                    "reps_realizadas": 10,
+                    "rpe_real": 7.5
+                  },
+                  {
+                    "index": 2,
+                    "weight": 60,
+                    "reps": 8,
+                    "peso_kg_actual": 60,
+                    "reps_realizadas": 8,
+                    "rpe_real": 8.0
+                  },
+                  {
+                    "index": 3,
+                    "weight": 60,
+                    "reps": 8,
+                    "peso_kg_actual": 60,
+                    "reps_realizadas": 8,
+                    "rpe_real": 8.0
+                  }
                 ]
               },
               {
@@ -117,9 +282,24 @@ export const WORKOUT_DATA = [
                 "name": "Curl femoral en máquina",
                 "description": "Aislamiento de isquios.",
                 "reps_objetivo": 12,
+                "rpe_objetivo": 8.0,
                 "sets": [
-                  { "index": 1, "weight": 30, "reps": 12 },
-                  { "index": 2, "weight": 35, "reps": 10 }
+                  {
+                    "index": 1,
+                    "weight": 30,
+                    "reps": 12,
+                    "peso_kg_actual": 30,
+                    "reps_realizadas": 12,
+                    "rpe_real": 7.5
+                  },
+                  {
+                    "index": 2,
+                    "weight": 35,
+                    "reps": 10,
+                    "peso_kg_actual": 35,
+                    "reps_realizadas": 10,
+                    "rpe_real": 8.0
+                  }
                 ]
               },
               {
@@ -127,9 +307,24 @@ export const WORKOUT_DATA = [
                 "name": "Extensión de cuádriceps en máquina",
                 "description": "Trabajo de cuádriceps con control para cuidar la rodilla.",
                 "reps_objetivo": 12,
+                "rpe_objetivo": 8.0,
                 "sets": [
-                  { "index": 1, "weight": 25, "reps": 15 },
-                  { "index": 2, "weight": 30, "reps": 12 }
+                  {
+                    "index": 1,
+                    "weight": 25,
+                    "reps": 15,
+                    "peso_kg_actual": 25,
+                    "reps_realizadas": 15,
+                    "rpe_real": 7.5
+                  },
+                  {
+                    "index": 2,
+                    "weight": 30,
+                    "reps": 12,
+                    "peso_kg_actual": 30,
+                    "reps_realizadas": 12,
+                    "rpe_real": 8.0
+                  }
                 ]
               },
               {
@@ -137,9 +332,24 @@ export const WORKOUT_DATA = [
                 "name": "Zancadas estáticas con mancuernas",
                 "description": "Trabajo unilateral de pierna, rango moderado por rodilla.",
                 "reps_objetivo": 10,
+                "rpe_objetivo": 8.0,
                 "sets": [
-                  { "index": 1, "weight": 14, "reps": 10 },
-                  { "index": 2, "weight": 16, "reps": 8  }
+                  {
+                    "index": 1,
+                    "weight": 14,
+                    "reps": 10,
+                    "peso_kg_actual": 14,
+                    "reps_realizadas": 10,
+                    "rpe_real": 7.5
+                  },
+                  {
+                    "index": 2,
+                    "weight": 16,
+                    "reps": 8,
+                    "peso_kg_actual": 16,
+                    "reps_realizadas": 8,
+                    "rpe_real": 8.0
+                  }
                 ]
               },
               {
@@ -147,9 +357,24 @@ export const WORKOUT_DATA = [
                 "name": "Abducción de cadera en máquina",
                 "description": "Enfoque en glúteo medio, carga moderada.",
                 "reps_objetivo": 15,
+                "rpe_objetivo": 8.0,
                 "sets": [
-                  { "index": 1, "weight": 35, "reps": 15 },
-                  { "index": 2, "weight": 40, "reps": 12 }
+                  {
+                    "index": 1,
+                    "weight": 35,
+                    "reps": 15,
+                    "peso_kg_actual": 35,
+                    "reps_realizadas": 15,
+                    "rpe_real": 7.5
+                  },
+                  {
+                    "index": 2,
+                    "weight": 40,
+                    "reps": 12,
+                    "peso_kg_actual": 40,
+                    "reps_realizadas": 12,
+                    "rpe_real": 8.0
+                  }
                 ]
               }
             ]
@@ -162,28 +387,52 @@ export const WORKOUT_DATA = [
           "nombre": "Ana",
           "apellido": "García",
           "edad": 32,
-          "genero": "Femenino",
-          "peso_kg": 62,
-          "altura_cm": 165,
           "imc": 22.8,
-          "frecuencia_entrenamiento": "3 veces por semana",
-          "historial_lesiones": false,
-          "zona_lesion": null
+          "peso_kg": 62,
+          "sexo": "F",
+          "historial_lesion_tipo": "ninguna",
+          "historial_lesion_tiempo_semanas": 0,
+          "dolor_actual": "no_dolor",
+          "altura_cm": 165,
+          "frecuencia_entrenamiento": "3 veces por semana"
         },
         "workouts": [
           {
             "id": "w_u2_0",
             "name": "Upper body Ana",
+            "sesion_num": 0,
             "exercises": [
               {
                 "id": "e_u2_0",
                 "name": "Press banca inclinado con mancuernas",
                 "description": "Pecho superior con menor estrés en hombro.",
                 "reps_objetivo": 10,
+                "rpe_objetivo": 8.0,
                 "sets": [
-                  { "index": 1, "weight": 12, "reps": 12 },
-                  { "index": 2, "weight": 14, "reps": 10 },
-                  { "index": 3, "weight": 16, "reps": 8  }
+                  {
+                    "index": 1,
+                    "weight": 12,
+                    "reps": 12,
+                    "peso_kg_actual": 12,
+                    "reps_realizadas": 12,
+                    "rpe_real": 7.5
+                  },
+                  {
+                    "index": 2,
+                    "weight": 14,
+                    "reps": 10,
+                    "peso_kg_actual": 14,
+                    "reps_realizadas": 10,
+                    "rpe_real": 8.0
+                  },
+                  {
+                    "index": 3,
+                    "weight": 16,
+                    "reps": 8,
+                    "peso_kg_actual": 16,
+                    "reps_realizadas": 8,
+                    "rpe_real": 8.5
+                  }
                 ]
               },
               {
@@ -191,9 +440,24 @@ export const WORKOUT_DATA = [
                 "name": "Remo en máquina",
                 "description": "Trabajo de espalda media.",
                 "reps_objetivo": 10,
+                "rpe_objetivo": 8.0,
                 "sets": [
-                  { "index": 1, "weight": 35, "reps": 12 },
-                  { "index": 2, "weight": 40, "reps": 10 }
+                  {
+                    "index": 1,
+                    "weight": 35,
+                    "reps": 12,
+                    "peso_kg_actual": 35,
+                    "reps_realizadas": 12,
+                    "rpe_real": 7.5
+                  },
+                  {
+                    "index": 2,
+                    "weight": 40,
+                    "reps": 10,
+                    "peso_kg_actual": 40,
+                    "reps_realizadas": 10,
+                    "rpe_real": 8.0
+                  }
                 ]
               },
               {
@@ -201,10 +465,32 @@ export const WORKOUT_DATA = [
                 "name": "Elevaciones laterales",
                 "description": "Aislamiento del deltoide medio.",
                 "reps_objetivo": 12,
+                "rpe_objetivo": 8.0,
                 "sets": [
-                  { "index": 1, "weight": 4, "reps": 15 },
-                  { "index": 2, "weight": 6, "reps": 12 },
-                  { "index": 3, "weight": 6, "reps": 10 }
+                  {
+                    "index": 1,
+                    "weight": 4,
+                    "reps": 15,
+                    "peso_kg_actual": 4,
+                    "reps_realizadas": 15,
+                    "rpe_real": 7.5
+                  },
+                  {
+                    "index": 2,
+                    "weight": 6,
+                    "reps": 12,
+                    "peso_kg_actual": 6,
+                    "reps_realizadas": 12,
+                    "rpe_real": 8.0
+                  },
+                  {
+                    "index": 3,
+                    "weight": 6,
+                    "reps": 10,
+                    "peso_kg_actual": 6,
+                    "reps_realizadas": 10,
+                    "rpe_real": 8.0
+                  }
                 ]
               },
               {
@@ -212,9 +498,24 @@ export const WORKOUT_DATA = [
                 "name": "Jalón al pecho agarre neutro",
                 "description": "Trabajo de dorsales con menos estrés en los hombros.",
                 "reps_objetivo": 10,
+                "rpe_objetivo": 8.0,
                 "sets": [
-                  { "index": 1, "weight": 30, "reps": 12 },
-                  { "index": 2, "weight": 35, "reps": 10 }
+                  {
+                    "index": 1,
+                    "weight": 30,
+                    "reps": 12,
+                    "peso_kg_actual": 30,
+                    "reps_realizadas": 12,
+                    "rpe_real": 7.5
+                  },
+                  {
+                    "index": 2,
+                    "weight": 35,
+                    "reps": 10,
+                    "peso_kg_actual": 35,
+                    "reps_realizadas": 10,
+                    "rpe_real": 8.0
+                  }
                 ]
               },
               {
@@ -222,9 +523,24 @@ export const WORKOUT_DATA = [
                 "name": "Curl de bíceps con mancuernas",
                 "description": "Trabajo de bíceps alterno de pie.",
                 "reps_objetivo": 10,
+                "rpe_objetivo": 8.0,
                 "sets": [
-                  { "index": 1, "weight": 7, "reps": 12 },
-                  { "index": 2, "weight": 8, "reps": 10 }
+                  {
+                    "index": 1,
+                    "weight": 7,
+                    "reps": 12,
+                    "peso_kg_actual": 7,
+                    "reps_realizadas": 12,
+                    "rpe_real": 7.5
+                  },
+                  {
+                    "index": 2,
+                    "weight": 8,
+                    "reps": 10,
+                    "peso_kg_actual": 8,
+                    "reps_realizadas": 10,
+                    "rpe_real": 8.0
+                  }
                 ]
               },
               {
@@ -232,9 +548,24 @@ export const WORKOUT_DATA = [
                 "name": "Extensión de tríceps en polea con cuerda",
                 "description": "Enfoque en tríceps con mayor rango de movimiento.",
                 "reps_objetivo": 10,
+                "rpe_objetivo": 8.0,
                 "sets": [
-                  { "index": 1, "weight": 18, "reps": 12 },
-                  { "index": 2, "weight": 20, "reps": 10 }
+                  {
+                    "index": 1,
+                    "weight": 18,
+                    "reps": 12,
+                    "peso_kg_actual": 18,
+                    "reps_realizadas": 12,
+                    "rpe_real": 7.5
+                  },
+                  {
+                    "index": 2,
+                    "weight": 20,
+                    "reps": 10,
+                    "peso_kg_actual": 20,
+                    "reps_realizadas": 10,
+                    "rpe_real": 8.0
+                  }
                 ]
               }
             ]
@@ -242,16 +573,39 @@ export const WORKOUT_DATA = [
           {
             "id": "w_u2_1",
             "name": "Lower body Ana",
+            "sesion_num": 1,
             "exercises": [
               {
                 "id": "e_u2_6",
                 "name": "Sentadilla goblet",
                 "description": "Sentadilla con mancuerna, controlada.",
                 "reps_objetivo": 10,
+                "rpe_objetivo": 8.0,
                 "sets": [
-                  { "index": 1, "weight": 16, "reps": 12 },
-                  { "index": 2, "weight": 18, "reps": 10 },
-                  { "index": 3, "weight": 20, "reps": 8  }
+                  {
+                    "index": 1,
+                    "weight": 16,
+                    "reps": 12,
+                    "peso_kg_actual": 16,
+                    "reps_realizadas": 12,
+                    "rpe_real": 7.5
+                  },
+                  {
+                    "index": 2,
+                    "weight": 18,
+                    "reps": 10,
+                    "peso_kg_actual": 18,
+                    "reps_realizadas": 10,
+                    "rpe_real": 8.0
+                  },
+                  {
+                    "index": 3,
+                    "weight": 20,
+                    "reps": 8,
+                    "peso_kg_actual": 20,
+                    "reps_realizadas": 8,
+                    "rpe_real": 8.5
+                  }
                 ]
               },
               {
@@ -259,10 +613,32 @@ export const WORKOUT_DATA = [
                 "name": "Hip thrust",
                 "description": "Enfoque en glúteo.",
                 "reps_objetivo": 10,
+                "rpe_objetivo": 8.0,
                 "sets": [
-                  { "index": 1, "weight": 60, "reps": 12 },
-                  { "index": 2, "weight": 70, "reps": 10 },
-                  { "index": 3, "weight": 75, "reps": 8  }
+                  {
+                    "index": 1,
+                    "weight": 60,
+                    "reps": 12,
+                    "peso_kg_actual": 60,
+                    "reps_realizadas": 12,
+                    "rpe_real": 7.5
+                  },
+                  {
+                    "index": 2,
+                    "weight": 70,
+                    "reps": 10,
+                    "peso_kg_actual": 70,
+                    "reps_realizadas": 10,
+                    "rpe_real": 8.0
+                  },
+                  {
+                    "index": 3,
+                    "weight": 75,
+                    "reps": 8,
+                    "peso_kg_actual": 75,
+                    "reps_realizadas": 8,
+                    "rpe_real": 8.5
+                  }
                 ]
               },
               {
@@ -270,9 +646,24 @@ export const WORKOUT_DATA = [
                 "name": "Elevación de talones en máquina",
                 "description": "Trabajo de pantorrilla.",
                 "reps_objetivo": 15,
+                "rpe_objetivo": 8.0,
                 "sets": [
-                  { "index": 1, "weight": 30, "reps": 15 },
-                  { "index": 2, "weight": 35, "reps": 12 }
+                  {
+                    "index": 1,
+                    "weight": 30,
+                    "reps": 15,
+                    "peso_kg_actual": 30,
+                    "reps_realizadas": 15,
+                    "rpe_real": 7.5
+                  },
+                  {
+                    "index": 2,
+                    "weight": 35,
+                    "reps": 12,
+                    "peso_kg_actual": 35,
+                    "reps_realizadas": 12,
+                    "rpe_real": 8.0
+                  }
                 ]
               },
               {
@@ -280,9 +671,24 @@ export const WORKOUT_DATA = [
                 "name": "Peso muerto rumano con mancuernas",
                 "description": "Trabajo de isquios y glúteo con menor carga axial.",
                 "reps_objetivo": 10,
+                "rpe_objetivo": 8.0,
                 "sets": [
-                  { "index": 1, "weight": 18, "reps": 12 },
-                  { "index": 2, "weight": 20, "reps": 10 }
+                  {
+                    "index": 1,
+                    "weight": 18,
+                    "reps": 12,
+                    "peso_kg_actual": 18,
+                    "reps_realizadas": 12,
+                    "rpe_real": 7.5
+                  },
+                  {
+                    "index": 2,
+                    "weight": 20,
+                    "reps": 10,
+                    "peso_kg_actual": 20,
+                    "reps_realizadas": 10,
+                    "rpe_real": 8.0
+                  }
                 ]
               },
               {
@@ -290,9 +696,24 @@ export const WORKOUT_DATA = [
                 "name": "Abducción de cadera en polea",
                 "description": "Trabajo de glúteo medio y estabilidad de cadera.",
                 "reps_objetivo": 15,
+                "rpe_objetivo": 8.0,
                 "sets": [
-                  { "index": 1, "weight": 10, "reps": 15 },
-                  { "index": 2, "weight": 12, "reps": 12 }
+                  {
+                    "index": 1,
+                    "weight": 10,
+                    "reps": 15,
+                    "peso_kg_actual": 10,
+                    "reps_realizadas": 15,
+                    "rpe_real": 7.5
+                  },
+                  {
+                    "index": 2,
+                    "weight": 12,
+                    "reps": 12,
+                    "peso_kg_actual": 12,
+                    "reps_realizadas": 12,
+                    "rpe_real": 8.0
+                  }
                 ]
               },
               {
@@ -300,9 +721,24 @@ export const WORKOUT_DATA = [
                 "name": "Step-ups al banco con mancuernas",
                 "description": "Trabajo unilateral de pierna, enfoque en cuádriceps y glúteo.",
                 "reps_objetivo": 10,
+                "rpe_objetivo": 8.0,
                 "sets": [
-                  { "index": 1, "weight": 8, "reps": 10 },
-                  { "index": 2, "weight": 8, "reps": 10 }
+                  {
+                    "index": 1,
+                    "weight": 8,
+                    "reps": 10,
+                    "peso_kg_actual": 8,
+                    "reps_realizadas": 10,
+                    "rpe_real": 7.5
+                  },
+                  {
+                    "index": 2,
+                    "weight": 8,
+                    "reps": 10,
+                    "peso_kg_actual": 8,
+                    "reps_realizadas": 10,
+                    "rpe_real": 8.0
+                  }
                 ]
               }
             ]

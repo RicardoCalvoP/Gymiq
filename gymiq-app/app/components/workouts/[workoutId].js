@@ -11,17 +11,20 @@ import ConfirmModal from "../ConfirmModal";
 import Screen from "../Screen";
 import ExerciseCard from './ExerciseCard';
 import { ActionButton } from '../Button';
+import { useUser } from "../../context/UserContext";
 
 const generarIdUnico = () => Math.random().toString(36).slice(2);
 
 export default function WorkoutDetails(){
+  const USUARIOS = WORKOUT_DATA[0].usuarios;
+  const { activeUserId, setActiveUserId } = useUser();
+  const activeUser = USUARIOS.find((u) => u.id === activeUserId);
+
   const { workoutId, isActive } = useLocalSearchParams();
   const editable = isActive === 'true';
   const [modalVisible, setModalVisible] = useState(false);
   const router = useRouter();
 
-
-  // WORKOUT_DATA stores workouts nested under usuarios. Search all users for the workout id.
   let workout;
   for (const entry of WORKOUT_DATA) {
     if (!entry.usuarios) continue;
@@ -52,7 +55,7 @@ const [session, setSession] = useState(() =>
 );
 
   const handleConfirmEndWorkout = async () => {
-    const log = buildWorkoutLog(workout, session);
+    const log = buildWorkoutLog(workout, session, activeUser);
     await saveWorkoutLog(log);
     setModalVisible(false);
     router.push('/(tabs)');
