@@ -97,6 +97,9 @@ class SimpleStrengthEnv:
             rpe_real=rpe_real,
             hubo_dolor=hubo_dolor,
             progreso_kg=(new_peso - prev_peso),
+            ratio_volumen=1.0,          # el entorno no modela volumen, lo dejamos neutro
+            ratio_reps=1.0,             # igual aquí
+            lesion_tipo=lesion_tipo,    # sí usamos la lesión real del perfil
         )
 
         # ===== Actualizar estado =====
