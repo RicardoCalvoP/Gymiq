@@ -54,7 +54,10 @@ def ingest_log_entry(log_entry: Dict[str, Any]) -> None:
         or "unknown_workout"
     )
 
-    sesion_num = log_entry.get("sesion_num") or log_entry.get("sessionNum")
+    assert "sesion_num" in log_entry, "sesion_num debe existir después del modelo Pydantic"
+
+    sesion_num = log_entry["sesion_num"]   # ya es int, Pydantic lo garantiza
+
     if sesion_num is None:
         raise ValueError("El payload /log/ debe incluir 'sesion_num' (int).")
 
@@ -85,12 +88,14 @@ def ingest_log_entry(log_entry: Dict[str, Any]) -> None:
         exercise_name = ex.get("name", "Ejercicio sin nombre")
 
         print(
-            f"[RL_ENGINE] ex#{idx} '{exercise_name}': "
-            f"current={current_w:.1f} kg, "
-            f"delta={delta_kg:+.1f} kg (action {action_idx}), "
-            f"recommended={recommended_w:.1f} kg, "
-            f"rpe_obj={state_raw['rpe_objetivo']:.1f}, "
-            f"rpe_real={state_raw['rpe_real']:.2f}, "
-            f"ratio_vol={state_raw['ratio_volumen']:.2f}, "
-            f"ratio_reps={state_raw['ratio_reps']:.2f}"
+            "\n******************************************************* \n"
+            f"[RL_ENGINE] ex#{idx} '{exercise_name}': \n"
+            f"current={current_w:.1f} kg, \n"
+            f"delta={delta_kg:+.1f} kg (action {action_idx}), \n"
+            f"recommended={recommended_w:.1f} kg, \n"
+            f"rpe_obj={state_raw['rpe_objetivo']:.1f}, \n"
+            f"rpe_real={state_raw['rpe_real']:.2f}, \n"
+            f"ratio_vol={state_raw['ratio_volumen']:.2f}, \n"
+            f"ratio_reps={state_raw['ratio_reps']:.2f}\n"
+            "\n******************************************************* \n"
         )
