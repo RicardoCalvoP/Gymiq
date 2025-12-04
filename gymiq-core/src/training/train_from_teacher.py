@@ -9,33 +9,26 @@ def train_policy_from_teacher(
     states_and_targets: List[Tuple[torch.Tensor, int]],
     n_epochs: int = 50,
     lr: float = 1e-3,
+    device: torch.device | None = None,
 ) -> PolicyNetwork:
-    """
-    Entrena una PolicyNetwork para imitar al Maestro.
+    if device is None:
+        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-    states_and_targets:
-      lista de (state_tensor, target_idx) donde:
-        - state_tensor: salida de encode_state(state_raw) [D_STATE]
-        - target_idx: índice de acción en ACTION_SPACE_KG
-    """
-    if not states_and_targets:
-        raise ValueError(
-            "train_policy_from_teacher: states_and_targets vacío.")
-
-    policy = PolicyNetwork()
+    policy = PolicyNetwork().to(device)
     optimizer = optim.Adam(policy.parameters(), lr=lr)
-
-    policy.train()
+    loss_fn = torch.nn.CrossEntropyLoss()
 
     for epoch in range(n_epochs):
         total_loss = 0.0
 
         for state_tensor, target_idx in states_and_targets:
-            probs = policy(state_tensor)          # [1, n_actions]
-            probs = probs.squeeze(0)              # [n_actions]
+            # mover cada sample a la GPU
+            state_tensor = state_tensor.to(device)
+            target = torch.tensor(
+                [target_idx], dtype=torch.long, device=device)
 
-            log_prob = torch.log(probs[target_idx] + 1e-8)
-            loss = -log_prob
+            logits = policy(state_tensor.unsqueeze(0))  # [1, n_actions]
+            loss = loss_fn(logits, target)
 
             optimizer.zero_grad()
             loss.backward()
@@ -50,4 +43,4 @@ def train_policy_from_teacher(
             )
 
     policy.eval()
-    return policy
+    return policy.to("cpu")
