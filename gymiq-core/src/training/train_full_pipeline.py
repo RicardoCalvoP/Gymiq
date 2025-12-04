@@ -65,13 +65,14 @@ def build_states_and_targets(
             delta_teacher = rule_based_delta_from_meta(state_raw, user_profile)
             target_idx = _delta_to_action_idx(delta_teacher)
 
-            states_and_targets.append((state_tensor, target_idx))
-    print("TEACHER:", delta_teacher,
-          "vol:", state_raw["ratio_volumen"],
-          "reps:", state_raw["ratio_reps"],
-          "rpe_real:", state_raw["rpe_real"])
+            print("TEACHER:", delta_teacher,
+                  "vol:", state_raw["ratio_volumen"],
+                  "reps:", state_raw["ratio_reps"],
+                  "rpe_real:", state_raw["rpe_real"])
 
-    return states_and_targets
+            states_and_targets.append((state_tensor, target_idx))
+
+        return states_and_targets
 
 
 def main():

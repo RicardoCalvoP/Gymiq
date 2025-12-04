@@ -69,6 +69,8 @@ def ingest_log_entry(log_entry: Dict[str, Any]) -> None:
         f"({len(exercises)} ejercicios, sesion_num={sesion_num})"
     )
 
+    recomendaciones: List[Dict[str, Any]] = []
+
     for idx, ex in enumerate(exercises, start=1):
         # 1) Construir state_raw a partir de perfil + ejercicio
         state_raw = build_state_raw_from_exercise(
@@ -81,12 +83,15 @@ def ingest_log_entry(log_entry: Dict[str, Any]) -> None:
         result = POLICY_SERVICE.recommend_weight_delta(state_raw)
         delta_kg = result["delta_kg"]
         action_idx = result["action_index"]
+        action_probs = result["action_probs"]
 
         current_w = state_raw["peso_kg_actual"]
         recommended_w = current_w + delta_kg
 
         exercise_name = ex.get("name", "Ejercicio sin nombre")
+        sets = ex.get("sets", [])
 
+        # Debug (si quieres mantenerlo)
         print(
             "\n******************************************************* \n"
             f"[RL_ENGINE] ex#{idx} '{exercise_name}': \n"
@@ -99,11 +104,34 @@ def ingest_log_entry(log_entry: Dict[str, Any]) -> None:
             f"ratio_reps={state_raw['ratio_reps']:.2f}\n"
             "\n******************************************************* \n"
         )
-
-        result = POLICY_SERVICE.recommend_weight_delta(state_raw)
-
-        delta_kg = result["delta_kg"]
-        action_idx = result["action_index"]
-        action_probs = result["action_probs"]
-
         print("action_probs:", action_probs)
+
+        # 3) Armamos la recomendación para ESTE ejercicio
+        #    Idea: mismo peso recomendado en todos los sets de ese ejercicio
+        sets_recomendados = [
+            {
+                "index": i + 1,
+                "peso_kg": recommended_w,
+            }
+            for i, _ in enumerate(sets)
+        ]
+
+        recomendaciones.append(
+            {
+                "name": exercise_name,
+                "peso_actual": current_w,
+                "delta_kg": delta_kg,
+                "peso_recomendado": recommended_w,
+                "sets_recomendados": sets_recomendados,
+            }
+        )
+
+    # 4) Payload de respuesta para el frontend
+    response: Dict[str, Any] = {
+        "workout_id": workout_id,
+        "sesion_num": sesion_num + 1,
+        "perfil": user_profile,
+        "ejercicios": recomendaciones,
+    }
+
+    return response
