@@ -213,7 +213,7 @@ export const WORKOUT_DATA = [
             "exercises": [
               {
                 "id": "e_u1_6",
-                "name": "Prensa inclinada",
+                "name": "Prensa de piernas",
                 "description": "Menos carga en rodilla que la sentadilla libre.",
                 "reps_objetivo": 10,
                 "rpe_objetivo": 8.0,
@@ -279,7 +279,7 @@ export const WORKOUT_DATA = [
               },
               {
                 "id": "e_u1_8",
-                "name": "Curl femoral en máquina",
+                "name": "Curl femoral sentado",
                 "description": "Aislamiento de isquios.",
                 "reps_objetivo": 12,
                 "rpe_objetivo": 8.0,
@@ -304,7 +304,7 @@ export const WORKOUT_DATA = [
               },
               {
                 "id": "e_u1_9",
-                "name": "Extensión de cuádriceps en máquina",
+                "name": "Extensión de cuádriceps",
                 "description": "Trabajo de cuádriceps con control para cuidar la rodilla.",
                 "reps_objetivo": 12,
                 "rpe_objetivo": 8.0,
@@ -329,7 +329,7 @@ export const WORKOUT_DATA = [
               },
               {
                 "id": "e_u1_10",
-                "name": "Zancadas estáticas con mancuernas",
+                "name": "Desplantes",
                 "description": "Trabajo unilateral de pierna, rango moderado por rodilla.",
                 "reps_objetivo": 10,
                 "rpe_objetivo": 8.0,
@@ -404,7 +404,7 @@ export const WORKOUT_DATA = [
             "exercises": [
               {
                 "id": "e_u2_0",
-                "name": "Press banca inclinado con mancuernas",
+                "name": "Press banca inclinado con barra",
                 "description": "Pecho superior con menor estrés en hombro.",
                 "reps_objetivo": 10,
                 "rpe_objetivo": 8.0,
@@ -437,7 +437,7 @@ export const WORKOUT_DATA = [
               },
               {
                 "id": "e_u2_1",
-                "name": "Remo en máquina",
+                "name": "Remo sentado en polea baja",
                 "description": "Trabajo de espalda media.",
                 "reps_objetivo": 10,
                 "rpe_objetivo": 8.0,
@@ -495,7 +495,7 @@ export const WORKOUT_DATA = [
               },
               {
                 "id": "e_u2_3",
-                "name": "Jalón al pecho agarre neutro",
+                "name": "Jalón en polea alta agarre cerrado",
                 "description": "Trabajo de dorsales con menos estrés en los hombros.",
                 "reps_objetivo": 10,
                 "rpe_objetivo": 8.0,
@@ -520,7 +520,7 @@ export const WORKOUT_DATA = [
               },
               {
                 "id": "e_u2_4",
-                "name": "Curl de bíceps con mancuernas",
+                "name": "Curl con mancuernas",
                 "description": "Trabajo de bíceps alterno de pie.",
                 "reps_objetivo": 10,
                 "rpe_objetivo": 8.0,
@@ -545,7 +545,7 @@ export const WORKOUT_DATA = [
               },
               {
                 "id": "e_u2_5",
-                "name": "Extensión de tríceps en polea con cuerda",
+                "name": "Extensión de tríceps con cuerda",
                 "description": "Enfoque en tríceps con mayor rango de movimiento.",
                 "reps_objetivo": 10,
                 "rpe_objetivo": 8.0,
@@ -577,7 +577,7 @@ export const WORKOUT_DATA = [
             "exercises": [
               {
                 "id": "e_u2_6",
-                "name": "Sentadilla goblet",
+                "name": "Sentadilla con barra",
                 "description": "Sentadilla con mancuerna, controlada.",
                 "reps_objetivo": 10,
                 "rpe_objetivo": 8.0,
@@ -643,7 +643,7 @@ export const WORKOUT_DATA = [
               },
               {
                 "id": "e_u2_8",
-                "name": "Elevación de talones en máquina",
+                "name": "Elevación de talones de pie (pantorrilla)",
                 "description": "Trabajo de pantorrilla.",
                 "reps_objetivo": 15,
                 "rpe_objetivo": 8.0,
@@ -668,7 +668,7 @@ export const WORKOUT_DATA = [
               },
               {
                 "id": "e_u2_9",
-                "name": "Peso muerto rumano con mancuernas",
+                "name": "Peso muerto rumano",
                 "description": "Trabajo de isquios y glúteo con menor carga axial.",
                 "reps_objetivo": 10,
                 "rpe_objetivo": 8.0,
@@ -693,7 +693,7 @@ export const WORKOUT_DATA = [
               },
               {
                 "id": "e_u2_10",
-                "name": "Abducción de cadera en polea",
+                "name": "Patada de glúteo en polea",
                 "description": "Trabajo de glúteo medio y estabilidad de cadera.",
                 "reps_objetivo": 15,
                 "rpe_objetivo": 8.0,
@@ -718,7 +718,7 @@ export const WORKOUT_DATA = [
               },
               {
                 "id": "e_u2_11",
-                "name": "Step-ups al banco con mancuernas",
+                "name": "Desplantes",
                 "description": "Trabajo unilateral de pierna, enfoque en cuádriceps y glúteo.",
                 "reps_objetivo": 10,
                 "rpe_objetivo": 8.0,
