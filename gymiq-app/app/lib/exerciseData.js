@@ -388,7 +388,7 @@ export const WORKOUT_DATA = [
           "apellido": "García",
           "edad": 32,
           "imc": 22.8,
-          "peso_kg": 62,
+          "peso_usuario": 62,
           "sexo": "F",
           "historial_lesion_tipo": "ninguna",
           "historial_lesion_tiempo_semanas": 0,
@@ -411,25 +411,25 @@ export const WORKOUT_DATA = [
                 "sets": [
                   {
                     "index": 1,
-                    "weight": 12,
+                    "weight": 16.0,
                     "reps": 12,
-                    "peso_kg_actual": 12,
+                    "peso_kg_actual": 16.0,
                     "reps_realizadas": 12,
                     "rpe_real": 7.5
                   },
                   {
                     "index": 2,
-                    "weight": 14,
+                    "weight": 16.0,
                     "reps": 10,
-                    "peso_kg_actual": 14,
+                    "peso_kg_actual": 16.0,
                     "reps_realizadas": 10,
                     "rpe_real": 8.0
                   },
                   {
                     "index": 3,
-                    "weight": 16,
+                    "weight": 16.0,
                     "reps": 8,
-                    "peso_kg_actual": 16,
+                    "peso_kg_actual": 16.0,
                     "reps_realizadas": 8,
                     "rpe_real": 8.5
                   }
@@ -444,17 +444,17 @@ export const WORKOUT_DATA = [
                 "sets": [
                   {
                     "index": 1,
-                    "weight": 35,
+                    "weight": 40.0,
                     "reps": 12,
-                    "peso_kg_actual": 35,
+                    "peso_kg_actual": 40.0,
                     "reps_realizadas": 12,
                     "rpe_real": 7.5
                   },
                   {
                     "index": 2,
-                    "weight": 40,
+                    "weight": 40.0,
                     "reps": 10,
-                    "peso_kg_actual": 40,
+                    "peso_kg_actual": 40.0,
                     "reps_realizadas": 10,
                     "rpe_real": 8.0
                   }
@@ -469,25 +469,25 @@ export const WORKOUT_DATA = [
                 "sets": [
                   {
                     "index": 1,
-                    "weight": 4,
+                    "weight": 6.0,
                     "reps": 15,
-                    "peso_kg_actual": 4,
+                    "peso_kg_actual": 6.0,
                     "reps_realizadas": 15,
                     "rpe_real": 7.5
                   },
                   {
                     "index": 2,
-                    "weight": 6,
+                    "weight": 6.0,
                     "reps": 12,
-                    "peso_kg_actual": 6,
+                    "peso_kg_actual": 6.0,
                     "reps_realizadas": 12,
                     "rpe_real": 8.0
                   },
                   {
                     "index": 3,
-                    "weight": 6,
+                    "weight": 6.0,
                     "reps": 10,
-                    "peso_kg_actual": 6,
+                    "peso_kg_actual": 6.0,
                     "reps_realizadas": 10,
                     "rpe_real": 8.0
                   }
@@ -502,17 +502,17 @@ export const WORKOUT_DATA = [
                 "sets": [
                   {
                     "index": 1,
-                    "weight": 30,
+                    "weight": 35.0,
                     "reps": 12,
-                    "peso_kg_actual": 30,
+                    "peso_kg_actual": 35.0,
                     "reps_realizadas": 12,
                     "rpe_real": 7.5
                   },
                   {
                     "index": 2,
-                    "weight": 35,
+                    "weight": 35.0,
                     "reps": 10,
-                    "peso_kg_actual": 35,
+                    "peso_kg_actual": 35.0,
                     "reps_realizadas": 10,
                     "rpe_real": 8.0
                   }
@@ -527,17 +527,17 @@ export const WORKOUT_DATA = [
                 "sets": [
                   {
                     "index": 1,
-                    "weight": 7,
+                    "weight": 8.0,
                     "reps": 12,
-                    "peso_kg_actual": 7,
+                    "peso_kg_actual": 8.0,
                     "reps_realizadas": 12,
                     "rpe_real": 7.5
                   },
                   {
                     "index": 2,
-                    "weight": 8,
+                    "weight": 8.0,
                     "reps": 10,
-                    "peso_kg_actual": 8,
+                    "peso_kg_actual": 8.0,
                     "reps_realizadas": 10,
                     "rpe_real": 8.0
                   }
@@ -552,17 +552,17 @@ export const WORKOUT_DATA = [
                 "sets": [
                   {
                     "index": 1,
-                    "weight": 18,
+                    "weight": 20.0,
                     "reps": 12,
-                    "peso_kg_actual": 18,
+                    "peso_kg_actual": 20.0,
                     "reps_realizadas": 12,
                     "rpe_real": 7.5
                   },
                   {
                     "index": 2,
-                    "weight": 20,
+                    "weight": 20.0,
                     "reps": 10,
-                    "peso_kg_actual": 20,
+                    "peso_kg_actual": 20.0,
                     "reps_realizadas": 10,
                     "rpe_real": 8.0
                   }
