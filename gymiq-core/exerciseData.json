@@ -19,39 +19,61 @@
           {
             "reps": 10,
             "rpe": 7.5,
-            "peso_kg": 60
+            "peso_kg": 90
           },
           {
             "reps": 8,
             "rpe": 8,
-            "peso_kg": 70
+            "peso_kg": 90
           },
           {
             "reps": 6,
             "rpe": 8.5,
-            "peso_kg": 72.5
+            "peso_kg": 90
           }
         ]
       },
       {
-        "name": "Press inclinado con mancuernas",
-        "reps_objetivo": 10,
+        "name": "Press militar con barra",
+        "reps_objetivo": 8,
         "rpe_objetivo": 8,
         "sets": [
           {
             "reps": 10,
             "rpe": 7.5,
-            "peso_kg": 30
+            "peso_kg": 40
+          },
+          {
+            "reps": 8,
+            "rpe": 8,
+            "peso_kg": 40
+          },
+          {
+            "reps": 6,
+            "rpe": 8.5,
+            "peso_kg": 40
+          }
+        ]
+      },
+      {
+        "name": "Fondos en paralelas asistidos",
+        "reps_objetivo": 10,
+        "rpe_objetivo": 8,
+        "sets": [
+          {
+            "reps": 12,
+            "rpe": 7.5,
+            "peso_kg": 5
           },
           {
             "reps": 10,
             "rpe": 8,
-            "peso_kg": 32.5
+            "peso_kg": 5
           },
           {
             "reps": 8,
-            "rpe": 8.5,
-            "peso_kg": 35
+            "rpe": 8,
+            "peso_kg": 5
           }
         ]
       },
@@ -66,36 +88,26 @@
             "peso_kg": 14
           },
           {
-            "reps": 12,
-            "rpe": 8,
-            "peso_kg": 16
-          },
-          {
             "reps": 10,
-            "rpe": 8.5,
-            "peso_kg": 18
+            "rpe": 8,
+            "peso_kg": 14
           }
         ]
       },
       {
-        "name": "Fondos en paralelas asistidos",
+        "name": "Jalón en polea alta agarre cerrado",
         "reps_objetivo": 10,
         "rpe_objetivo": 8,
         "sets": [
           {
-            "reps": 10,
+            "reps": 12,
             "rpe": 7.5,
-            "peso_kg": 0
+            "peso_kg": 50
           },
           {
-            "reps": 8,
+            "reps": 10,
             "rpe": 8,
-            "peso_kg": 0
-          },
-          {
-            "reps": 8,
-            "rpe": 8.5,
-            "peso_kg": 0
+            "peso_kg": 50
           }
         ]
       },
@@ -105,19 +117,19 @@
         "rpe_objetivo": 8,
         "sets": [
           {
-            "reps": 10,
+            "reps": 12,
             "rpe": 7.5,
-            "peso_kg": 32.5
+            "peso_kg": 30
+          },
+          {
+            "reps": 10,
+            "rpe": 8,
+            "peso_kg": 30
           },
           {
             "reps": 8,
-            "rpe": 8,
-            "peso_kg": 37.5
-          },
-          {
-            "reps": 6,
             "rpe": 8.5,
-            "peso_kg": 40
+            "peso_kg": 30
           }
         ]
       }
@@ -136,46 +148,24 @@
     "sesion_num": 1,
     "ejercicios": [
       {
-        "name": "Sentadilla con barra",
-        "reps_objetivo": 6,
-        "rpe_objetivo": 8,
-        "sets": [
-          {
-            "reps": 6,
-            "rpe": 7.5,
-            "peso_kg": 100
-          },
-          {
-            "reps": 6,
-            "rpe": 8,
-            "peso_kg": 105
-          },
-          {
-            "reps": 6,
-            "rpe": 8.5,
-            "peso_kg": 110
-          }
-        ]
-      },
-      {
         "name": "Prensa de piernas",
         "reps_objetivo": 10,
         "rpe_objetivo": 8,
         "sets": [
           {
-            "reps": 10,
+            "reps": 12,
             "rpe": 7.5,
-            "peso_kg": 220
+            "peso_kg": 100
           },
           {
             "reps": 10,
             "rpe": 8,
-            "peso_kg": 240
+            "peso_kg": 120
           },
           {
             "reps": 8,
             "rpe": 8.5,
-            "peso_kg": 260
+            "peso_kg": 130
           }
         ]
       },
@@ -185,391 +175,19 @@
         "rpe_objetivo": 8,
         "sets": [
           {
-            "reps": 8,
-            "rpe": 7.5,
-            "peso_kg": 90
-          },
-          {
-            "reps": 8,
-            "rpe": 8,
-            "peso_kg": 95
-          },
-          {
-            "reps": 6,
-            "rpe": 8.5,
-            "peso_kg": 100
-          }
-        ]
-      },
-      {
-        "name": "Curl femoral acostado",
-        "reps_objetivo": 10,
-        "rpe_objetivo": 8,
-        "sets": [
-          {
             "reps": 10,
-            "rpe": 7.5,
-            "peso_kg": 40
-          },
-          {
-            "reps": 10,
-            "rpe": 8,
-            "peso_kg": 45
-          },
-          {
-            "reps": 8,
-            "rpe": 8.5,
-            "peso_kg": 50
-          }
-        ]
-      },
-      {
-        "name": "Elevación de talones de pie (pantorrilla)",
-        "reps_objetivo": 12,
-        "rpe_objetivo": 8,
-        "sets": [
-          {
-            "reps": 12,
-            "rpe": 7.5,
-            "peso_kg": 80
-          },
-          {
-            "reps": 12,
-            "rpe": 8,
-            "peso_kg": 90
-          },
-          {
-            "reps": 10,
-            "rpe": 8.5,
-            "peso_kg": 100
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "perfil": {
-      "edad": 28,
-      "imc": 24.1,
-      "peso_usuario": 78,
-      "sexo": "M",
-      "historial_lesion_tipo": "leve",
-      "historial_lesion_tiempo_semanas": 12,
-      "dolor_actual": "no_dolor"
-    },
-    "sesion_num": 2,
-    "ejercicios": [
-      {
-        "name": "Jalón en polea alta agarre cerrado",
-        "reps_objetivo": 8,
-        "rpe_objetivo": 8,
-        "sets": [
-          {
-            "reps": 8,
-            "rpe": 7.5,
-            "peso_kg": 0
-          },
-          {
-            "reps": 8,
-            "rpe": 8,
-            "peso_kg": 0
-          },
-          {
-            "reps": 6,
-            "rpe": 8.5,
-            "peso_kg": 0
-          }
-        ]
-      },
-      {
-        "name": "Remo con barra",
-        "reps_objetivo": 8,
-        "rpe_objetivo": 8,
-        "sets": [
-          {
-            "reps": 8,
-            "rpe": 7.5,
-            "peso_kg": 80
-          },
-          {
-            "reps": 8,
-            "rpe": 8,
-            "peso_kg": 85
-          },
-          {
-            "reps": 6,
-            "rpe": 8.5,
-            "peso_kg": 90
-          }
-        ]
-      },
-      {
-        "name": "Remo con mancuernas",
-        "reps_objetivo": 10,
-        "rpe_objetivo": 8,
-        "sets": [
-          {
-            "reps": 10,
-            "rpe": 7.5,
-            "peso_kg": 32.5
-          },
-          {
-            "reps": 10,
-            "rpe": 8,
-            "peso_kg": 35
-          },
-          {
-            "reps": 8,
-            "rpe": 8.5,
-            "peso_kg": 37.5
-          }
-        ]
-      },
-      {
-        "name": "Pájaros con mancuernas",
-        "reps_objetivo": 12,
-        "rpe_objetivo": 8,
-        "sets": [
-          {
-            "reps": 12,
-            "rpe": 7.5,
-            "peso_kg": 22.5
-          },
-          {
-            "reps": 12,
-            "rpe": 8,
-            "peso_kg": 25
-          },
-          {
-            "reps": 10,
-            "rpe": 8.5,
-            "peso_kg": 27.5
-          }
-        ]
-      },
-      {
-        "name": "Curl con barra",
-        "reps_objetivo": 10,
-        "rpe_objetivo": 8,
-        "sets": [
-          {
-            "reps": 10,
-            "rpe": 7.5,
-            "peso_kg": 35
-          },
-          {
-            "reps": 10,
-            "rpe": 8,
-            "peso_kg": 37.5
-          },
-          {
-            "reps": 8,
-            "rpe": 8.5,
-            "peso_kg": 40
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "perfil": {
-      "edad": 28,
-      "imc": 24.1,
-      "peso_usuario": 78,
-      "sexo": "M",
-      "historial_lesion_tipo": "leve",
-      "historial_lesion_tiempo_semanas": 12,
-      "dolor_actual": "no_dolor"
-    },
-    "sesion_num": 3,
-    "ejercicios": [
-      {
-        "name": "Press militar con barra",
-        "reps_objetivo": 6,
-        "rpe_objetivo": 8,
-        "sets": [
-          {
-            "reps": 6,
             "rpe": 7.5,
             "peso_kg": 50
           },
           {
-            "reps": 6,
+            "reps": 8,
             "rpe": 8,
-            "peso_kg": 55
-          },
-          {
-            "reps": 6,
-            "rpe": 8.5,
-            "peso_kg": 57.5
-          }
-        ]
-      },
-      {
-        "name": "Elevaciones laterales",
-        "reps_objetivo": 12,
-        "rpe_objetivo": 8,
-        "sets": [
-          {
-            "reps": 12,
-            "rpe": 7.5,
-            "peso_kg": 10
-          },
-          {
-            "reps": 12,
-            "rpe": 8,
-            "peso_kg": 12
-          },
-          {
-            "reps": 10,
-            "rpe": 8.5,
-            "peso_kg": 14
-          }
-        ]
-      },
-      {
-        "name": "Pájaros con mancuernas",
-        "reps_objetivo": 12,
-        "rpe_objetivo": 8,
-        "sets": [
-          {
-            "reps": 12,
-            "rpe": 7.5,
-            "peso_kg": 10
-          },
-          {
-            "reps": 12,
-            "rpe": 8,
-            "peso_kg": 12
-          },
-          {
-            "reps": 10,
-            "rpe": 8.5,
-            "peso_kg": 14
-          }
-        ]
-      },
-      {
-        "name": "Remo al mentón",
-        "reps_objetivo": 10,
-        "rpe_objetivo": 8,
-        "sets": [
-          {
-            "reps": 10,
-            "rpe": 7.5,
-            "peso_kg": 40
-          },
-          {
-            "reps": 10,
-            "rpe": 8,
-            "peso_kg": 42.5
+            "peso_kg": 60
           },
           {
             "reps": 8,
-            "rpe": 8.5,
-            "peso_kg": 45
-          }
-        ]
-      },
-      {
-        "name": "Press francés con barra",
-        "reps_objetivo": 10,
-        "rpe_objetivo": 8,
-        "sets": [
-          {
-            "reps": 10,
-            "rpe": 7.5,
-            "peso_kg": 30
-          },
-          {
-            "reps": 10,
             "rpe": 8,
-            "peso_kg": 32.5
-          },
-          {
-            "reps": 8,
-            "rpe": 8.5,
-            "peso_kg": 35
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "perfil": {
-      "edad": 28,
-      "imc": 24.1,
-      "peso_usuario": 78,
-      "sexo": "M",
-      "historial_lesion_tipo": "leve",
-      "historial_lesion_tiempo_semanas": 12,
-      "dolor_actual": "no_dolor"
-    },
-    "sesion_num": 4,
-    "ejercicios": [
-      {
-        "name": "Peso muerto",
-        "reps_objetivo": 5,
-        "rpe_objetivo": 8,
-        "sets": [
-          {
-            "reps": 5,
-            "rpe": 7.5,
-            "peso_kg": 140
-          },
-          {
-            "reps": 5,
-            "rpe": 8,
-            "peso_kg": 150
-          },
-          {
-            "reps": 5,
-            "rpe": 8.5,
-            "peso_kg": 155
-          }
-        ]
-      },
-      {
-        "name": "Desplantes",
-        "reps_objetivo": 10,
-        "rpe_objetivo": 8,
-        "sets": [
-          {
-            "reps": 10,
-            "rpe": 7.5,
-            "peso_kg": 24
-          },
-          {
-            "reps": 10,
-            "rpe": 8,
-            "peso_kg": 26
-          },
-          {
-            "reps": 8,
-            "rpe": 8.5,
-            "peso_kg": 28
-          }
-        ]
-      },
-      {
-        "name": "Extensión de cuádriceps",
-        "reps_objetivo": 12,
-        "rpe_objetivo": 8,
-        "sets": [
-          {
-            "reps": 12,
-            "rpe": 7.5,
-            "peso_kg": 40
-          },
-          {
-            "reps": 12,
-            "rpe": 8,
-            "peso_kg": 45
-          },
-          {
-            "reps": 10,
-            "rpe": 8.5,
-            "peso_kg": 50
+            "peso_kg": 60
           }
         ]
       },
@@ -581,39 +199,315 @@
           {
             "reps": 12,
             "rpe": 7.5,
-            "peso_kg": 35
-          },
-          {
-            "reps": 12,
-            "rpe": 8,
-            "peso_kg": 40
+            "peso_kg": 30
           },
           {
             "reps": 10,
-            "rpe": 8.5,
-            "peso_kg": 45
+            "rpe": 8,
+            "peso_kg": 35
           }
         ]
       },
       {
-        "name": "Elevación de talones sentado",
+        "name": "Extensión de cuádriceps",
+        "reps_objetivo": 12,
+        "rpe_objetivo": 8,
+        "sets": [
+          {
+            "reps": 15,
+            "rpe": 7.5,
+            "peso_kg": 25
+          },
+          {
+            "reps": 12,
+            "rpe": 8,
+            "peso_kg": 30
+          }
+        ]
+      },
+      {
+        "name": "Desplantes",
+        "reps_objetivo": 10,
+        "rpe_objetivo": 8,
+        "sets": [
+          {
+            "reps": 10,
+            "rpe": 7.5,
+            "peso_kg": 14
+          },
+          {
+            "reps": 8,
+            "rpe": 8,
+            "peso_kg": 16
+          }
+        ]
+      },
+      {
+        "name": "Abducción de cadera en máquina",
         "reps_objetivo": 15,
         "rpe_objetivo": 8,
         "sets": [
           {
             "reps": 15,
             "rpe": 7.5,
+            "peso_kg": 35
+          },
+          {
+            "reps": 12,
+            "rpe": 8,
+            "peso_kg": 40
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "perfil": {
+      "edad": 32,
+      "imc": 22.8,
+      "peso_usuario": 62,
+      "sexo": "F",
+      "historial_lesion_tipo": "ninguna",
+      "historial_lesion_tiempo_semanas": 0,
+      "dolor_actual": "no_dolor"
+    },
+    "sesion_num": 0,
+    "ejercicios": [
+      {
+        "name": "Press banca inclinado con barra",
+        "reps_objetivo": 10,
+        "rpe_objetivo": 8,
+        "sets": [
+          {
+            "reps": 12,
+            "rpe": 7.5,
+            "peso_kg": 12
+          },
+          {
+            "reps": 10,
+            "rpe": 8,
+            "peso_kg": 14
+          },
+          {
+            "reps": 8,
+            "rpe": 8.5,
+            "peso_kg": 16
+          }
+        ]
+      },
+      {
+        "name": "Remo sentado en polea baja",
+        "reps_objetivo": 10,
+        "rpe_objetivo": 8,
+        "sets": [
+          {
+            "reps": 12,
+            "rpe": 7.5,
+            "peso_kg": 35
+          },
+          {
+            "reps": 10,
+            "rpe": 8,
+            "peso_kg": 40
+          }
+        ]
+      },
+      {
+        "name": "Elevaciones laterales",
+        "reps_objetivo": 12,
+        "rpe_objetivo": 8,
+        "sets": [
+          {
+            "reps": 15,
+            "rpe": 7.5,
+            "peso_kg": 4
+          },
+          {
+            "reps": 12,
+            "rpe": 8,
+            "peso_kg": 6
+          },
+          {
+            "reps": 10,
+            "rpe": 8,
+            "peso_kg": 6
+          }
+        ]
+      },
+      {
+        "name": "Jal\u00f3n en polea alta agarre cerrado",
+        "reps_objetivo": 10,
+        "rpe_objetivo": 8,
+        "sets": [
+          {
+            "reps": 12,
+            "rpe": 7.5,
+            "peso_kg": 30
+          },
+          {
+            "reps": 10,
+            "rpe": 8,
+            "peso_kg": 35
+          }
+        ]
+      },
+      {
+        "name": "Curl con mancuernas",
+        "reps_objetivo": 10,
+        "rpe_objetivo": 8,
+        "sets": [
+          {
+            "reps": 12,
+            "rpe": 7.5,
+            "peso_kg": 7
+          },
+          {
+            "reps": 10,
+            "rpe": 8,
+            "peso_kg": 8
+          }
+        ]
+      },
+      {
+        "name": "Extensión de tríceps con cuerda",
+        "reps_objetivo": 10,
+        "rpe_objetivo": 8,
+        "sets": [
+          {
+            "reps": 12,
+            "rpe": 7.5,
+            "peso_kg": 18
+          },
+          {
+            "reps": 10,
+            "rpe": 8,
+            "peso_kg": 20
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "perfil": {
+      "edad": 32,
+      "imc": 22.8,
+      "peso_usuario": 62,
+      "sexo": "F",
+      "historial_lesion_tipo": "ninguna",
+      "historial_lesion_tiempo_semanas": 0,
+      "dolor_actual": "no_dolor"
+    },
+    "sesion_num": 1,
+    "ejercicios": [
+      {
+        "name": "Sentadilla con barra",
+        "reps_objetivo": 10,
+        "rpe_objetivo": 8,
+        "sets": [
+          {
+            "reps": 12,
+            "rpe": 7.5,
+            "peso_kg": 16
+          },
+          {
+            "reps": 10,
+            "rpe": 8,
+            "peso_kg": 18
+          },
+          {
+            "reps": 8,
+            "rpe": 8.5,
+            "peso_kg": 20
+          }
+        ]
+      },
+      {
+        "name": "Hip thrust",
+        "reps_objetivo": 10,
+        "rpe_objetivo": 8,
+        "sets": [
+          {
+            "reps": 12,
+            "rpe": 7.5,
             "peso_kg": 60
           },
           {
-            "reps": 15,
+            "reps": 10,
             "rpe": 8,
             "peso_kg": 70
           },
           {
-            "reps": 12,
+            "reps": 8,
             "rpe": 8.5,
-            "peso_kg": 80
+            "peso_kg": 75
+          }
+        ]
+      },
+      {
+        "name": "Elevación de talones de pie (pantorrilla)",
+        "reps_objetivo": 15,
+        "rpe_objetivo": 8,
+        "sets": [
+          {
+            "reps": 15,
+            "rpe": 7.5,
+            "peso_kg": 30
+          },
+          {
+            "reps": 12,
+            "rpe": 8,
+            "peso_kg": 35
+          }
+        ]
+      },
+      {
+        "name": "Peso muerto rumano",
+        "reps_objetivo": 10,
+        "rpe_objetivo": 8,
+        "sets": [
+          {
+            "reps": 12,
+            "rpe": 7.5,
+            "peso_kg": 18
+          },
+          {
+            "reps": 10,
+            "rpe": 8,
+            "peso_kg": 20
+          }
+        ]
+      },
+      {
+        "name": "Patada de glúteo en polea",
+        "reps_objetivo": 15,
+        "rpe_objetivo": 8,
+        "sets": [
+          {
+            "reps": 15,
+            "rpe": 7.5,
+            "peso_kg": 10
+          },
+          {
+            "reps": 12,
+            "rpe": 8,
+            "peso_kg": 12
+          }
+        ]
+      },
+      {
+        "name": "Desplantes",
+        "reps_objetivo": 10,
+        "rpe_objetivo": 8,
+        "sets": [
+          {
+            "reps": 10,
+            "rpe": 7.5,
+            "peso_kg": 8
+          },
+          {
+            "reps": 10,
+            "rpe": 8,
+            "peso_kg": 8
           }
         ]
       }
