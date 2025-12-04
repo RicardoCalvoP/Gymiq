@@ -1,4 +1,5 @@
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+// storage/workoutLogs.js
+const API_BASE_URL = "http://192.168.68.116:8000";
 
 export async function saveWorkoutLog(log) {
   console.log("Workout log (local):", JSON.stringify(log, null, 2));
@@ -13,11 +14,20 @@ export async function saveWorkoutLog(log) {
     });
 
     if (!response.ok) {
-      console.error("Failed to send workout log:", response.status, await response.text());
-    } else {
-      console.log("Workout log sent successfully");
+      const errorText = await response.text();
+      console.error(
+        "Failed to send workout log:",
+        response.status,
+        errorText
+      );
+      throw new Error(`Failed to send workout log: ${response.status}`);
     }
+
+    const data = await response.json();
+    console.log("Workout log sent successfully, backend response:", data);
+    return data;
   } catch (error) {
     console.error("Error sending workout log:", error);
+    throw error;
   }
 }

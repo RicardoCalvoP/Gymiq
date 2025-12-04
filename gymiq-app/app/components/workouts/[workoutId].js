@@ -1,32 +1,34 @@
-import { Text, FlatList, View, ScrollView, Pressable} from 'react-native'
+// app/components/workouts/[workoutId].js
+import { Text, FlatList, View, ScrollView } from "react-native";
 import { useState } from "react";
-import { useLocalSearchParams, useRouter } from 'expo-router'
+import { useLocalSearchParams, useRouter } from "expo-router";
 
-import { WORKOUT_DATA } from "../../lib/exerciseData"
-
-import { buildWorkoutLog } from '../../context/buildWorkoutLog';
-import { saveWorkoutLog } from '../../storage/workoutLogs';
+import { useWorkoutData } from "../../context/WorkoutDataContext";
+import { buildWorkoutLog } from "../../context/buildWorkoutLog";
+import { saveWorkoutLog } from "../../storage/workoutLogs";
 
 import ConfirmModal from "../ConfirmModal";
 import Screen from "../Screen";
-import ExerciseCard from './ExerciseCard';
-import { ActionButton } from '../Button';
+import ExerciseCard from "./ExerciseCard";
+import { ActionButton } from "../Button";
 import { useUser } from "../../context/UserContext";
 
 const generarIdUnico = () => Math.random().toString(36).slice(2);
 
-export default function WorkoutDetails(){
-  const USUARIOS = WORKOUT_DATA[0].usuarios;
-  const { activeUserId, setActiveUserId } = useUser();
+export default function WorkoutDetails() {
+  const { workoutData, applyBackendUpdate } = useWorkoutData();
+  const USUARIOS = workoutData[0].usuarios;
+
+  const { activeUserId } = useUser();
   const activeUser = USUARIOS.find((u) => u.id === activeUserId);
 
   const { workoutId, isActive } = useLocalSearchParams();
-  const editable = isActive === 'true';
+  const editable = isActive === "true";
   const [modalVisible, setModalVisible] = useState(false);
   const router = useRouter();
 
   let workout;
-  for (const entry of WORKOUT_DATA) {
+  for (const entry of workoutData) {
     if (!entry.usuarios) continue;
     for (const user of entry.usuarios) {
       const found = (user.workouts || []).find((w) => w.id === workoutId);
@@ -38,42 +40,45 @@ export default function WorkoutDetails(){
     if (workout) break;
   }
 
-const [session, setSession] = useState(() =>
-  workout
-    ? workout.exercises.map((exercise) => ({
-        exerciseId: exercise.id,
-        sets: exercise.sets.map((set) => ({
-          id: generarIdUnico(),
-          recommendedWeight: set.weight,
-          recommendedReps: set.reps,
-          weight: '',
-          reps: '',
-          completed: false,
-        })),
-      }))
-    : []
-);
+  const [session, setSession] = useState(() =>
+    workout
+      ? workout.exercises.map((exercise) => ({
+          exerciseId: exercise.id,
+          sets: exercise.sets.map((set) => ({
+            id: generarIdUnico(),
+            recommendedWeight: set.weight,
+            recommendedReps: set.reps,
+            weight: "",
+            reps: "",
+            completed: false,
+          })),
+        }))
+      : []
+  );
 
   const handleConfirmEndWorkout = async () => {
     const log = buildWorkoutLog(workout, session, activeUser);
-    await saveWorkoutLog(log);
+    const backendResponse = await saveWorkoutLog(log);
+
+    applyBackendUpdate(backendResponse);
+
     setModalVisible(false);
-    router.push('/(tabs)');
+    router.push("/(tabs)");
   };
 
   const handleChangeSet = (exerciseId, setId, changes) => {
-  setSession(prev =>
-    prev.map(ex => {
-      if (ex.exerciseId !== exerciseId) return ex;
-      return {
-        ...ex,
-        sets: ex.sets.map(set =>
-          set.id === setId ? { ...set, ...changes } : set
-        ),
-      };
-    })
-  );
-};
+    setSession((prev) =>
+      prev.map((ex) => {
+        if (ex.exerciseId !== exerciseId) return ex;
+        return {
+          ...ex,
+          sets: ex.sets.map((set) =>
+            set.id === setId ? { ...set, ...changes } : set
+          ),
+        };
+      })
+    );
+  };
 
   if (!workout) {
     return (
@@ -82,7 +87,6 @@ const [session, setSession] = useState(() =>
       </Screen>
     );
   }
-
 
   return (
     <Screen>
@@ -98,7 +102,9 @@ const [session, setSession] = useState(() =>
           keyExtractor={(exercise) => exercise.id}
           scrollEnabled={false}
           renderItem={({ item }) => {
-            const sessionExercise = session.find(ex => ex.exerciseId === item.id);
+            const sessionExercise = session.find(
+              (ex) => ex.exerciseId === item.id
+            );
             return (
               <ExerciseCard
                 exercise={item}
@@ -110,25 +116,20 @@ const [session, setSession] = useState(() =>
           }}
         />
 
-
-        {
-        editable ? (
-        <ActionButton
-          title="End Workout"
-          onPress={() => setModalVisible(true)}
-        />
-        ) : null
-        }
+        {editable ? (
+          <ActionButton
+            title="End Workout"
+            onPress={() => setModalVisible(true)}
+          />
+        ) : null}
 
         <ConfirmModal
-        visible={modalVisible}
-        message="Are you sure you want to mark this workout as completed?"
-        onCancel={() => setModalVisible(false)}
-        onConfirm={() => {
-          handleConfirmEndWorkout();
-        }}
-      />
+          visible={modalVisible}
+          message="Are you sure you want to mark this workout as completed?"
+          onCancel={() => setModalVisible(false)}
+          onConfirm={handleConfirmEndWorkout}
+        />
       </ScrollView>
     </Screen>
-  )
+  );
 }
