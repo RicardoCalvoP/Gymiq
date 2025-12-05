@@ -12,57 +12,150 @@ def compute_reward(
     ratio_reps: float,
     lesion_tipo: str,
 ) -> float:
-    # 1) Termino de performance (volumen/reps vs objetivo)
-    # -----------------------------------------
-    # score_perf > 0 si cumples/superas, < 0 si no alcanzas
-    avg_ratio = 0.5 * (ratio_volumen + ratio_reps)
+    """
+    Reward para RL alineado con la misma metodología que rule_based_delta_from_meta.
 
-    if avg_ratio >= 1.0:
-        # Cumple/supera objetivo -> base positivo
-        # cuanto más por encima, más reward, pero cap.
-        score_perf = min(avg_ratio - 1.0, 1.0)  # [0, 1]
-        base_reward = 0.5 + 0.5 * score_perf    # en [0.5, 1.0]
+    Idea:
+      - A partir de ratio_reps aproximamos cuántas reps de más/de menos hizo
+        (diff_reps_aprox) asumiendo un objetivo típico de 8 reps.
+      - En función de diff_reps_aprox definimos qué *debería* hacer el agente:
+          * diff_reps_aprox <= -2        → bajar peso
+          * -2 < diff_reps_aprox < 1     → mantener
+          * 1 <= diff_reps_aprox < 2     → subir poco
+          * diff_reps_aprox >= 2         → subir más
+      - Comparamos eso con lo que realmente hizo (progreso_kg):
+          * progreso_kg > 0  → acción "subir"
+          * progreso_kg ≈ 0  → "mantener"
+          * progreso_kg < 0  → "bajar"
+      - Recompensamos si la dirección de la acción coincide con la esperada
+        según las reps, y penalizamos si hace lo contrario.
+      - Ajustamos por RPE, lesión y dolor.
+    """
+
+    # -----------------------------------------
+    # 1) Aproximar diff_reps a partir de ratio_reps
+    # -----------------------------------------
+    # Tomamos reps_objetivo "típico" = 8 para mapear ratio_reps → reps de más/menos.
+    # Para objetivos de 6–12 reps esto es una aproximación razonable.
+    reps_obj_aprox = 8.0
+    diff_reps_aprox = (ratio_reps - 1.0) * reps_obj_aprox  # +2 ≈ 2 reps extra, -2 ≈ 2 reps menos
+
+    # -----------------------------------------
+    # 2) Dirección DESEADA según reps/volumen
+    # -----------------------------------------
+    # Bandas similares a rule_based_delta_from_meta, pero en modo "dirección":
+    #   - "down"        si va claramente corto
+    #   - "hold"        si está cerca del objetivo
+    #   - "up_small"    si excede un poco
+    #   - "up_big"      si excede bastante
+    if diff_reps_aprox >= 2.0:
+        desired = "up_big"
+    elif diff_reps_aprox >= 1.0:
+        desired = "up_small"
+    elif diff_reps_aprox <= -2.0:
+        desired = "down"
     else:
-        # No llega al objetivo -> base negativo
-        deficit = min(1.0 - avg_ratio, 1.0)     # [0, 1]
-        base_reward = -deficit                  # en [-1.0, 0)
+        desired = "hold"
 
-    # 2) Ajuste por salud (lesión/dolor)
+    # Ajuste suave con volumen: si el volumen está claramente alto o bajo,
+    # refuerza la dirección.
+    if ratio_volumen > 1.2 and desired.startswith("up"):
+        desired = "up_big"
+    elif ratio_volumen < 0.8 and desired == "hold":
+        desired = "down"
+
     # -----------------------------------------
-    # Factor de salud que baja el reward si hay lesión
+    # 3) Dirección REAL de la acción del agente
+    # -----------------------------------------
+    # progreso_kg > 0  → subir
+    # progreso_kg < 0  → bajar
+    # |progreso_kg| muy pequeño (ej. 0 en espacio discreto) → mantener
+    if progreso_kg > 0.5:
+        action_dir = "up"
+    elif progreso_kg < -0.5:
+        action_dir = "down"
+    else:
+        action_dir = "hold"
+
+    # -----------------------------------------
+    # 4) Recompensa por concordancia acción vs. desired
+    # -----------------------------------------
+    reward_choice = 0.0
+
+    if desired == "hold":
+        if action_dir == "hold":
+            reward_choice = 1.0
+        else:
+            reward_choice = -0.5  # penaliza mover peso cuando deberías mantener
+    elif desired in ("up_small", "up_big"):
+        if action_dir == "up":
+            # Subir cuando toca subir
+            reward_choice = 1.0 if desired == "up_small" else 1.3
+        elif action_dir == "hold":
+            # Mantener cuando deberías subir → penalización suave
+            reward_choice = -0.3
+        else:
+            # bajar cuando deberías subir
+            reward_choice = -1.0
+    elif desired == "down":
+        if action_dir == "down":
+            reward_choice = 1.0
+        elif action_dir == "hold":
+            reward_choice = -0.3
+        else:
+            reward_choice = -1.0
+
+    # -----------------------------------------
+    # 5) Salud: lesión y dolor modulan reward_choice
+    # -----------------------------------------
+    # Factor de salud basado en tipo de lesión
     if lesion_tipo in ("ninguna", "leve"):
         health_factor = 1.0
     elif lesion_tipo == "moderada":
-        health_factor = 0.6
-    else:  # severa / crónica
-        health_factor = 0.3
+        health_factor = 0.7
+    else:  # severa / cronica
+        health_factor = 0.4
 
-    # Dolor actual: baja aún más
-    if hubo_dolor:
-        health_factor *= 0.3
+    # Dolor actual: reduce aún más la recompensa por subir
+    if hubo_dolor and action_dir == "up":
+        # castigamos subir con dolor
+        reward_choice -= 1.0
 
-    reward_health = base_reward * health_factor
+    reward_choice *= health_factor
 
-    # 3) RPE como freno de seguridad
     # -----------------------------------------
-    # Penalizar alejarse del objetivo
+    # 6) RPE como freno adicional
+    # -----------------------------------------
     diff_rpe = abs(rpe_real - rpe_objetivo)
-    reward_rpe = -diff_rpe  # 0 si clavas RPE, negativo si te vas
+    # Clavar el RPE = 0, desviarse resta
+    reward_rpe = -diff_rpe  # en [-∞, 0]
 
-    # Penalización fuerte si te pasas mucho
+    # Penalización extra si se pasa mucho de RPE objetivo
     if rpe_real > rpe_objetivo + 1.0:
         reward_rpe -= 1.0
 
-    # 4) Bonus suave por progresar en kg (si todo lo demás no está mal)
+    # Si viene MUY por encima de RPE y aún así la acción fue "up",
+    # penaliza adicionalmente.
+    if rpe_real > rpe_objetivo + 1.0 and action_dir == "up":
+        reward_choice -= 0.5
+
+    # -----------------------------------------
+    # 7) Bonus suave por progresar en la dirección correcta
     # -----------------------------------------
     reward_prog = 0.0
-    if progreso_kg > 0 and base_reward > 0 and not hubo_dolor:
-        reward_prog = min(progreso_kg / 2.5, 1.0) * 0.5  # cap y factor suave
+    if action_dir == "up" and desired.startswith("up") and not hubo_dolor:
+        # más kilos, más bonus, pero cap
+        reward_prog = min(abs(progreso_kg) / 5.0, 1.0) * 0.3
+    elif action_dir == "down" and desired == "down":
+        # bonus más pequeño por bajar cuando toca
+        reward_prog = 0.1
 
-    # 5) Reward total
     # -----------------------------------------
-    reward = reward_health + reward_rpe + reward_prog
+    # 8) Reward total
+    # -----------------------------------------
+    reward = reward_choice + reward_rpe + reward_prog
     return float(reward)
+
 
 
 def compute_age_factor(edad: int) -> float:
@@ -107,52 +200,131 @@ def snap_to_action_space(delta: float) -> float:
 
 def rule_based_delta_from_meta(state_raw: Dict, user_profile: Dict) -> float:
     """
-    Maestro basado en los mismos features que construye state_builder:
-    usa ratios, delta_rpe + RPE + perfil (edad, lesión).
+    Regla basada en el contexto completo del ejercicio (promedio de reps y peso).
+
+    Idea:
+      - reps_mean = reps promedio por set (ratio_reps * reps_obj).
+      - diff_reps = reps_mean - reps_obj.
+
+      Reglas de reps:
+        * diff_reps <= -2           → bajar (más reps faltan, más baja).
+        * -2 < diff_reps < 1        → mantener (no subir).
+        * 1 <= diff_reps < 2        → subir poco (+2.5).
+        * diff_reps >= 2            → subir más, por bandas (5, 7.5, 10...).
+
+    Luego se ajusta por RPE, edad/lesión/dolor y se encaja en ACTION_SPACE_KG.
     """
 
-    # 1) Leer lo que ya construye el state_builder
+    # -----------------------------
+    # 1) Contexto del ejercicio
+    # -----------------------------
     rpe_real = state_raw["rpe_real"]
     rpe_obj = state_raw["rpe_objetivo"]
-    ratio_vol = state_raw.get("ratio_volumen", 1.0)
     ratio_reps = state_raw.get("ratio_reps", 1.0)
-    delta_rpe = state_raw.get("delta_rpe", 0.0)
+    ratio_vol = state_raw.get("ratio_volumen", 1.0)
 
-    # 2) Heurística de progresión: mezcla ratios y delta_rpe
-    score = 0.5 * (ratio_vol - 1.0) + 0.3 * \
-        (ratio_reps - 1.0) - 0.2 * delta_rpe
+    reps_obj = float(state_raw.get("reps_objetivo", 0.0))
+    delta_rpe = rpe_real - rpe_obj
 
-    if score > 0.8:
-        base_delta = 2.5
-    elif score > 0.5:
-        base_delta = 1.0
-    elif score > 0.2:
-        base_delta = 1.0
-    elif score > -0.2:
-        base_delta = 0.0
-    elif score > -0.5:
-        base_delta = -1.0
+    # reps promedio por set según el ratio
+    if reps_obj > 0:
+        reps_mean = ratio_reps * reps_obj
     else:
-        base_delta = -2.5
+        reps_mean = reps_obj
 
-    # 3) Ajustar con RPE para no hacer locuras
-    if rpe_real > rpe_obj + 0.3 and base_delta > 0:
-        base_delta = 0.0
-    if rpe_real < rpe_obj - 0.3 and base_delta < 0:
+    diff_reps = reps_mean - reps_obj  # +2 => 2 reps de más por set; -2 => 2 de menos
+
+    base_delta = 0.0
+
+    # -----------------------------
+    # 2) Base_delta según diff_reps
+    # -----------------------------
+    if diff_reps >= 2.0:
+        # Muy por encima del objetivo. Más reps extra => más kg.
+        if diff_reps < 4.0:
+            base_delta = 5.0       # +2..+3 reps extra → salto alto pero razonable
+        elif diff_reps < 6.0:
+            base_delta = 7.5       # +4..+5 reps extra → más agresivo
+        else:
+            base_delta = 10.0      # +6 reps extra o más → muy agresivo (modulado luego)
+    elif diff_reps >= 1.0:
+        # Entre +1 y +2 reps por set: ya se pasó del objetivo → subir poco
+        base_delta = 2.5
+    elif diff_reps <= -2.0:
+        # Bastante por debajo del objetivo.
+        if diff_reps > -4.0:
+            base_delta = -2.5      # -2..-3 reps menos → baja poco
+        elif diff_reps > -6.0:
+            base_delta = -5.0      # -4..-5 → baja más
+        else:
+            base_delta = -7.5      # -6 o más → baja fuerte
+    else:
+        # Entre (obj_reps - 2, obj_reps + 1) → mantener
         base_delta = 0.0
 
-    # 4) Modulación por edad / lesión
+    # Ajuste suave con volumen
+    if base_delta > 0 and ratio_vol > 1.2 and diff_reps >= 2.0:
+        base_delta += 2.5
+    elif base_delta < 0 and ratio_vol < 0.8:
+        base_delta -= 2.5
+
+    # -----------------------------
+    # 3) Freno por RPE
+    # -----------------------------
+    if delta_rpe > 0.5 and base_delta > 0:
+        # Vino más pesado de lo esperado: como mucho un salto pequeño.
+        base_delta = min(base_delta, 2.5)
+
+    if delta_rpe > 1.0:
+        # Muy por arriba de RPE objetivo: mejor bajar algo.
+        if base_delta >= 0:
+            base_delta = -2.5
+        else:
+            base_delta = min(base_delta, -2.5)
+
+    if delta_rpe < -0.5 and diff_reps >= 2.0 and base_delta > 0:
+        # Muy fácil y con reps de sobra → permite un escalón más.
+        if base_delta == 5.0:
+            base_delta = 7.5
+        elif base_delta == 7.5:
+            base_delta = 10.0
+
+    # -----------------------------
+    # 4) Modulación por edad / lesión / dolor
+    # -----------------------------
     edad = user_profile["edad"]
     lesion_tipo = user_profile["historial_lesion_tipo"]
     lesion_tiempo = user_profile["historial_lesion_tiempo_semanas"]
     dolor_actual = user_profile["dolor_actual"]
 
     age_factor = compute_age_factor(edad)
-    injury_factor = compute_injury_factor(
-        lesion_tipo, lesion_tiempo, dolor_actual)
+    injury_factor = compute_injury_factor(lesion_tipo, lesion_tiempo, dolor_actual)
 
     delta_continuo = base_delta * age_factor * injury_factor
 
-    # 5) Ajuste al ACTION_SPACE_KG
+    # Dolor actual: aún más conservador
+    if dolor_actual == "molestia":
+        if delta_continuo > 5.0:
+            delta_continuo = 5.0
+    elif dolor_actual == "dolor":
+        if delta_continuo > 0:
+            delta_continuo = 0.0
+        else:
+            delta_continuo = max(delta_continuo, -5.0)
+
+    # -----------------------------
+    # 5) Clamp al rango de ACTION_SPACE_KG
+    # -----------------------------
+    max_pos = max(a for a in ACTION_SPACE_KG if a > 0)
+    min_neg = min(a for a in ACTION_SPACE_KG if a < 0)
+
+    if delta_continuo > max_pos:
+        delta_continuo = max_pos
+    if delta_continuo < min_neg:
+        delta_continuo = min_neg
+
+    # -----------------------------
+    # 6) Snap al action space
+    # -----------------------------
     delta_discreto = snap_to_action_space(delta_continuo)
     return delta_discreto

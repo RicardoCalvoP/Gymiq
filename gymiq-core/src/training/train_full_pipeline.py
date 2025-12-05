@@ -86,8 +86,8 @@ def build_states_and_targets(
 def build_synthetic_teacher_dataset(
     logs: List[Dict[str, Any]],
     episodes_per_exercise: int = 20,
-    max_steps_per_episode: int = 200,
-    num_explorations: int = 500,
+    max_steps_per_episode: int = 250,
+    num_explorations: int = 1000,
 ) -> List[Tuple[torch.Tensor, int]]:
     """
     Usa SimpleStrengthEnv + rule_based_delta_from_meta para generar
@@ -194,9 +194,9 @@ def main():
     # Datos sintéticos usando el entorno (miles de estados)
     synthetic_states_and_targets = build_synthetic_teacher_dataset(
         logs=logs,
-        episodes_per_exercise=10,
-        max_steps_per_episode=10,
-        num_explorations=10,
+        episodes_per_exercise=20,
+        max_steps_per_episode=20,
+        num_explorations=250,
     )
 
     states_and_targets = real_states_and_targets + synthetic_states_and_targets
@@ -211,7 +211,7 @@ def main():
     # 2) Entrenar política desde Maestro (reglas) con TODO el dataset
     policy_teacher = train_policy_from_teacher(
         states_and_targets=states_and_targets,
-        n_epochs=50,
+        n_epochs=100,
         lr=1e-3,
         device=DEVICE,
     )
@@ -251,7 +251,7 @@ def main():
                 user_profile=user_profile,
                 current_state=initial_state_raw,
                 max_steps=200,        # suficientemente grande
-                num_explorations=2_500,
+                num_explorations=250,
             )
 
             # Afinar con REINFORCE en este ejercicio/perfil
@@ -259,8 +259,8 @@ def main():
                 env=env,
                 policy=policy_rl,
                 optimizer=optimizer,
-                n_episodes=500,
-                gamma=0.99,
+                n_episodes=50,
+                gamma=0.98,
                 device=DEVICE,
             )
 

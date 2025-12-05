@@ -1,5 +1,7 @@
 from typing import Dict, Any, List
 
+from src.training.compute_functions import rule_based_delta_from_meta
+
 from .inference import PolicyService
 from .state_builder import build_state_raw_from_exercise
 
@@ -81,7 +83,8 @@ def ingest_log_entry(log_entry: Dict[str, Any]) -> None:
 
         # 2) Pedir recomendación de delta de peso a la policy
         result = POLICY_SERVICE.recommend_weight_delta(state_raw)
-        delta_kg = result["delta_kg"]
+        delta_kg = rule_based_delta_from_meta(state_raw, user_profile)
+
         action_idx = result["action_index"]
         action_probs = result["action_probs"]
 

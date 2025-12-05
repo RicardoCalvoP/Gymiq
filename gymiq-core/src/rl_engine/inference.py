@@ -17,7 +17,7 @@ class PolicyService:
       - devolver la recomendación de cambio de peso.
     """
 
-    def __init__(self, model: PolicyNetwork | None = None, weights_name: str = "policy_latest.pt") -> None:
+    def __init__(self, model: PolicyNetwork | None = None, weights_name: str = "policy_teacher.pt") -> None:
         if model is not None:
             self.policy = model
         else:
