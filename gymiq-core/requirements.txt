@@ -1,5 +1,11 @@
 fastapi
 uvicorn
-pydantic
 torch
 numpy
+SQLAlchemy
+psycopg2-binary
+passlib[bcrypt]==1.7.4
+bcrypt<4
+python-jose[cryptography]
+pydantic[email]
+pydantic-settings

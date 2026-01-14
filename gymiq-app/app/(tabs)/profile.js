@@ -1,10 +1,17 @@
-import { View, Text } from "react-native";
+import { View, Text, Pressable } from "react-native";
+
 import { useUser } from "../context/UserContext";
-import Screen from "../components/Screen";
+import { useAuth } from "../context/AuthContext";
+
 import { WORKOUT_DATA } from "../lib/exerciseData";
+
+import Screen from "../components/Screen";
 import Button from "../components/Button";
 
+
 export default function ProfileScreen() {
+  const { signOut } = useAuth();
+
   const USUARIOS = WORKOUT_DATA[0].usuarios;
 
   const { activeUserId, setActiveUserId } = useUser();
@@ -48,7 +55,14 @@ export default function ProfileScreen() {
         ) : (
           <Text className="text-green-300">Sin lesiones registradas</Text>
         )}
+
       </View>
+        <Pressable
+          onPress={signOut}
+          className="mt-6 bg-red-600 rounded-xl py-3 items-center"
+        >
+          <Text className="text-white font-semibold">Cerrar sesión</Text>
+        </Pressable>
     </Screen>
   );
 }

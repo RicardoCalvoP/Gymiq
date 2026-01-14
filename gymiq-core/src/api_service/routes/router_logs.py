@@ -1,18 +1,18 @@
+# api_service/routes/router_logs.py
 from fastapi import APIRouter
 from pprint import pprint
 import os
 
 from src.api_service.update_workout_data import update_exercise_js_file
-
-from .schemas import WorkoutLogRL
-from ..rl_engine import ingest_log_entry
+from ..schemas import WorkoutLogRL
+from ...rl_engine import ingest_log_entry
 
 router = APIRouter(prefix="/log", tags=["logs"])
 
 
 @router.post("/")
 async def receive_log(entry: WorkoutLogRL):
-    os.system('cls')
+    os.system("cls" if os.name == "nt" else "clear")
 
     payload = entry.model_dump(by_alias=False)
     print("\n===================================================== \n")
