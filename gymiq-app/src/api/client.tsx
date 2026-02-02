@@ -1,0 +1,45 @@
+// Using @env which is configured by react-native-dotenv
+import { API_URL } from "@env";
+
+type ApiRequestOptions = RequestInit & {
+  headers?: Record<string, string>;
+};
+
+export async function apiRequest(path: string, options: ApiRequestOptions = {}): Promise<any> {
+  const res = await fetch(`${API_URL}${path}`, {
+    headers: {
+      "Content-Type": "application/json",
+      ...(options.headers || {}),
+    },
+    ...options,
+  });
+
+  let data = null;
+  try {
+    data = await res.json();
+  } catch {
+    data = null;
+  }
+
+  if (!res.ok) {
+    let msg = "Request failed";
+
+    if (data?.detail) {
+      const detail = data.detail;
+      if (typeof detail === "string") {
+        msg = detail;
+      } else if (Array.isArray(detail)) {
+        // FastAPI 422 validation errors
+        msg = detail
+          .map((d: any) => d.msg || JSON.stringify(d))
+          .join("\n");
+      } else if (typeof detail === "object") {
+        msg = detail.msg || JSON.stringify(detail);
+      }
+    }
+
+    throw new Error(msg);
+  }
+
+  return data;
+}

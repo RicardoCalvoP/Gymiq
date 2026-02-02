@@ -2,10 +2,10 @@ module.exports = function (api) {
   api.cache(true);
   return {
     presets: [
-      'babel-preset-expo',
+      ["babel-preset-expo", { jsxImportSource: "nativewind" }],
+      "nativewind/babel",
     ],
     plugins: [
-      'nativewind/babel',
       [
         "module:react-native-dotenv",
         {
@@ -13,6 +13,8 @@ module.exports = function (api) {
           path: ".env",
         },
       ],
+      // If you use Reanimated directly, this must be LAST:
+      // "react-native-reanimated/plugin",
     ],
   };
 };
