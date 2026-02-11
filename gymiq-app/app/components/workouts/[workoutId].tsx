@@ -9,7 +9,7 @@ import { saveWorkoutLog } from "../../../src/storage/workoutLogs";
 import ConfirmModal from "../ConfirmModal";
 import Screen from "../Screen";
 import ExerciseCard from "./ExerciseCard";
-import { ActionButton } from "../Button";
+import { ActionButton } from "../Buttons";
 import { useUser } from "../../../src/context/UserContext";
 
 const generarIdUnico = () => Math.random().toString(36).slice(2);
