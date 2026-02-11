@@ -6,7 +6,7 @@ import { UserProvider  } from "../src/context/UserContext";
 import { WorkoutDataProvider  } from "../src/context/WorkoutDataContext";
 import { AuthProvider, useAuth } from "../src/context/AuthContext";
 
-import Button from "./components/Button";
+import { NavigationBackButton } from "./components/Buttons";
 import { useEffect } from "react";
 
 import "../global.css";
@@ -36,7 +36,7 @@ function RootNavigator() {
                 screenOptions={{
                   headerStyle: { backgroundColor: "#000" },
                   headerTintColor: "#fff",
-                  headerLeft: () => <Button title="Back" onPress={() => router.back()} />,
+                  headerLeft: () => <NavigationBackButton />,
                   headerRight: () => null,
                   headerShown: true
                 }}>

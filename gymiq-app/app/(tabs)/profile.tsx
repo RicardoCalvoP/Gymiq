@@ -6,7 +6,7 @@ import { useAuth } from "../../src/context/AuthContext";
 import { WORKOUT_DATA } from "../../src/lib/exerciseData";
 
 import Screen from "../components/Screen";
-import Button from "../components/Button";
+import Button from "../components/Buttons";
 
 
 export default function ProfileScreen() {

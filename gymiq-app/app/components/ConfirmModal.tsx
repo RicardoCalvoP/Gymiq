@@ -1,5 +1,5 @@
 import { Modal, View, Text, Pressable, GestureResponderEvent } from "react-native";
-import { ActionButton, CancelButton } from "./Button";
+import { ActionButton, CancelButton } from "./Buttons";
 
 type ConfirmModalProps = {
   visible: boolean;

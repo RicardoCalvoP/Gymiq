@@ -23,6 +23,15 @@ export default function Button({ title, onPress, flex }: ButtonProps) {
   );
 }
 
+export function NavigationBackButton() {
+  const navigation = useNavigation();
+  return (
+    <Pressable onPress={() => navigation.goBack()} className="px-4 rounded-md">
+      <Text className="text-white text-[16px]">← Back</Text>
+    </Pressable>
+  );
+}
+
 export function ActionButton({ title, onPress, flex }: ButtonProps) {
   return (
     <Pressable
