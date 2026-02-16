@@ -6,8 +6,7 @@ import { useAuth } from "../../src/context/AuthContext";
 import { WORKOUT_DATA } from "../../src/lib/exerciseData";
 
 import Screen from "../components/Screen";
-import Button from "../components/Buttons";
-
+import MainInfo from "../components/profile/MainInfo";
 
 export default function ProfileScreen() {
   const { signOut } = useAuth();
@@ -21,9 +20,7 @@ export default function ProfileScreen() {
 
   return (
     <Screen>
-      <View className="flex-1 items-center justify-center">
-        <Text className="text-2xl font-bold mb-4">Perfil de Usuario</Text>
-      </View>
+      <MainInfo displayName={perfil?.displayName || "Usuario"} username={perfil?.username || "usuario"} />
     </Screen>
   );
 }
