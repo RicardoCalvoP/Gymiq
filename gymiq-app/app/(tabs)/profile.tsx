@@ -20,7 +20,7 @@ export default function ProfileScreen() {
 
   return (
     <Screen>
-      <MainInfo displayName={perfil?.displayName || "Usuario"} username={perfil?.username || "usuario"} />
+      <MainInfo displayName={perfil?.displayName || "Usuario"} username={perfil?.username || "usuario" } profilePicture={perfil?.profilePicture || undefined} />
     </Screen>
   );
 }
