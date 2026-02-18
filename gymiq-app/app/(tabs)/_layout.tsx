@@ -1,6 +1,6 @@
 import { Tabs } from "expo-router";
 import { HomeIcon, InfoIcon } from "../components/Icons";
-
+import ProfileHeader from "../components/profile/ProfileHeader";
 export default function TabsLayout() {
   return (
       <Tabs
@@ -18,8 +18,9 @@ export default function TabsLayout() {
         }
         />
         <Tabs.Screen
+
           name="profile"
-          options={{ title: "Profile", tabBarIcon: ({ color }) => <InfoIcon color={color} />, }}
+          options={{ title: "", tabBarIcon: ({ color }) => <InfoIcon color={color} />, headerRight: () => <ProfileHeader /> }}
         />
       </Tabs>
   );
