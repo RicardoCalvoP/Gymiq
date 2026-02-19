@@ -11,16 +11,22 @@ import MainInfo from "../components/profile/MainInfo";
 export default function ProfileScreen() {
   const { signOut } = useAuth();
 
-  const USUARIOS = WORKOUT_DATA[0].usuarios;
+  const USERS = WORKOUT_DATA[0].users;
 
   const { activeUserId, setActiveUserId } = useUser();
-  const activeUser = USUARIOS.find((u) => u.id === activeUserId);
+  const activeUser = USERS.find((u) => u.id === activeUserId);
 
-  const perfil = activeUser?.perfil;
+  const profile = activeUser?.profile;
 
   return (
     <Screen>
-      <MainInfo displayName={perfil?.displayName || "Usuario"} username={perfil?.username || "usuario" } profilePicture={perfil?.profilePicture || undefined} />
+      <MainInfo
+        displayName={profile?.displayName || "user"}
+        username={profile?.username || "user" }
+        profilePicture={profile?.profilePicture || undefined}
+        followers={activeUser?.followers.length || 0}
+        following={activeUser?.following.length || 0}
+        />
     </Screen>
   );
 }

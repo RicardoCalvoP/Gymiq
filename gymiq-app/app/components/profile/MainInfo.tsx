@@ -6,9 +6,11 @@ type MainInfoProps = {
   displayName: string;
   username: string;
   profilePicture?: string;
+  followers: number;
+  following: number;
 };
 
-export default function MainInfo({ displayName, username, profilePicture }: MainInfoProps) {
+export default function MainInfo({ displayName, username, profilePicture, followers, following }: MainInfoProps) {
   const router = useRouter();
 
   return (
@@ -26,6 +28,18 @@ export default function MainInfo({ displayName, username, profilePicture }: Main
       <Text className="text-gray-400 text-[16px] font-normal my-2">
         @{username}
       </Text>
+
+      <View className="flex-row space-x-6 mt-4">
+        <View className="justify-center items-center px-4">
+          <Text className="text-white text-[16px] font-normal">{followers}</Text>
+          <Text className="text-gray-400 text-[14px] font-normal">Followers</Text>
+        </View>
+        <View className="justify-center items-center px-4 ">
+            <Text className="text-white text-[16px] font-normal">{following}</Text>
+            <Text className="text-gray-400 text-[14px] font-normal">Following</Text>
+        </View>
+      </View>
+
     </View>
   );
 }
