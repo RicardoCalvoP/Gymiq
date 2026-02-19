@@ -1,5 +1,5 @@
 type WorkoutData = {
-  usuarios: Array<{
+  users: Array<{
     id: string;
     perfil?: any;
     workouts: Array<{
@@ -58,7 +58,7 @@ export function applyBackendRecommendationsToWorkoutData(
 
   return workoutData.map((block) => ({
     ...block,
-    usuarios: block.usuarios.map((usuario) => {
+    users: block.users.map((usuario) => {
       if (usuario.id !== userId) return usuario;
 
       return {

@@ -32,10 +32,10 @@ type ExerciseSession = {
 
 export default function WorkoutDetails() {
   const { workoutData, applyBackendUpdate } = useWorkoutData();
-  const USUARIOS = (workoutData as any[])[0]?.usuarios || [];
+  const USERS = (workoutData as any[])[0]?.users || [];
 
   const { activeUserId } = useUser();
-  const activeUser = USUARIOS.find((u: any) => u.id === activeUserId);
+  const activeUser = USERS.find((u: any) => u.id === activeUserId);
 
   const { workoutId, isActive } = useLocalSearchParams() as { workoutId: string; isActive: string };
   const editable = isActive === "true";
@@ -44,8 +44,8 @@ export default function WorkoutDetails() {
 
   let workout: any;
   for (const entry of workoutData) {
-    if (!entry.usuarios) continue;
-    for (const user of entry.usuarios) {
+    if (!entry.users) continue;
+    for (const user of entry.users) {
       const found = (user.workouts || []).find((w: any) => w.id === workoutId);
       if (found) {
         workout = found;

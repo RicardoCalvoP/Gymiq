@@ -9,10 +9,10 @@ import Screen from "../components/Screen";
 
 export default function Main() {
   const { workoutData } = useWorkoutData();
-  const USUARIOS = (workoutData as any[])[0]?.usuarios || [];
+  const users = (workoutData as any[])[0]?.users || [];
 
   const { activeUserId, setActiveUserId } = useUser();
-  const activeUser = USUARIOS.find((u: any) => u.id === activeUserId);
+  const activeUser = users.find((u: any) => u.id === activeUserId);
   const workouts = activeUser?.workouts ?? [];
 
 
