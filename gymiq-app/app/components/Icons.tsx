@@ -1,4 +1,4 @@
-import { FontAwesome, FontAwesome6 } from "@expo/vector-icons";
+import { FontAwesome, FontAwesome6, Ionicons  } from "@expo/vector-icons";
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import Feather from '@expo/vector-icons/Feather';
 
@@ -28,9 +28,19 @@ export const UnCheckIcon = (props: IconProps) => (
   <MaterialIcons name="radio-button-unchecked" size={24} color="white" {...props}/>
 );
 
+export const SettingsIcon = (props: IconProps) => (
+  <Ionicons name="settings-sharp" size={24} color="white" {...props} />
+);
+
+export const EditIcon = (props: IconProps) => (
+  <MaterialIcons name="edit" size={24} color="white" {...props} />
+);
+
 export default {
   CircleInfoIcon,
   HomeIcon,
   InfoIcon,
   ChangeIcon,
+  SettingsIcon,
+  EditIcon,
 };
